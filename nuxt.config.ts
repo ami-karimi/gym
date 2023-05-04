@@ -20,6 +20,8 @@ export default defineNuxtConfig({
         },
     },
     runtimeConfig: {
+        PORT: 4466,
+        HOST: "0.0.0.0",
         SecretToken: '',
         AppMode: 'debug',
         public: {
