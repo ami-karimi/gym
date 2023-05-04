@@ -27,8 +27,11 @@
 body {
     font-family: "IRANSans FaNum";
     direction: rtl;
+    background-color: #111827;
+
 
 }
+
 .login-page {
     background-blend-mode: multiply;
     background-repeat: no-repeat;

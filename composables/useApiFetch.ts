@@ -11,7 +11,7 @@ const useApiFetch =  async (url: string, options: object) => {
 
     if(userToken){
         // @ts-ignore
-        headers['Authorization'] = `${admin.getToken}`
+        headers['Authorization'] = `Token ${user.getToken}`
     }
 
 
