@@ -24,6 +24,8 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         PORT: 4466,
+        NITRO_PORT: 4466,
+        NITRO_HOST: "0.0.0.0",
         HOST: "0.0.0.0",
         SecretToken: '',
         AppMode: 'debug',
