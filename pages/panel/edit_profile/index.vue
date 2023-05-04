@@ -39,12 +39,6 @@
                 </div>
               </div>
 
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شماره همراه</label>
-                  <input type="text" v-model="user.profile_form.phone_number" disabled id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="شماره همراه " required>
-                </div>
-              </div>
 
 
               <div class="col-md-6  mb-3">
@@ -264,8 +258,11 @@ export default {
   watch:{
     "user.profile_form.parent" : {
       async handler(){
-        await this.user.getSportFiled(this.user.profile_form.parent)
-
+        let id = this.user.profile_form.parent
+        let findIndex = this.user.sports_field.findIndex(item => item.id == id )
+        if(findIndex !== -1){
+          this.user.sports_field_children = this.user.sports_field[findIndex].sub_fields
+        }
       },
       deep: true,
     },

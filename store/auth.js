@@ -52,12 +52,29 @@ export  const useAuthStore = defineStore('auth', {
             this.user_token = token
         },
         async SendLogin() {
+            var
+                persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+                arabicNumbers  = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g],
+                fixNumbers = function (str)
+                {
+                    if(typeof str === 'string')
+                    {
+                        for(var i=0; i<10; i++)
+                        {
+                            str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+                        }
+                    }
+                    return str;
+                };
+
             const toast = useToast()
             if (!this.form.phone_number) {
                 toast.error('لطفا شماره تماس خود را وارد نمایید')
                 return;
             }
 
+            this.form.phone_number = fixNumbers(this.form.phone_number)
+            this.form.sms_token = fixNumbers(this.form.sms_token)
             this.form.loading = true
             const router = useRouter()
 
@@ -227,12 +244,9 @@ export  const useAuthStore = defineStore('auth', {
                 toast.error('لطفا شهر خود را انتخاب نمایید!')
                 return;
             }
-            formData.append('city',this.profile_form.city)
-            if(!this.profile_form.sport_club){
-                toast.error('لطفا بازشگاه ورزشی خود را انتخاب نمایید!')
-                return;
-            }
-            formData.append('sport_club',this.profile_form.sport_club)
+           if(this.profile_form.sport_club) {
+               formData.append('sport_club', this.profile_form.sport_club)
+           }
             if(!this.profile_form.field){
                 toast.error('لطفا رشته فرعی را انتخاب نمایید!')
                 return;
