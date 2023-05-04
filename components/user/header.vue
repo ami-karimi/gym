@@ -10,7 +10,6 @@
       </button>
 
       <a href="#" class="flex items-center">
-        <img src="/img/logo-login.png" class="h-8 ml-3 " alt="" />
         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">باشگاه فرهنگی و ورزشی</span>
       </a>
       <div class="flex items-center md:order-2">
