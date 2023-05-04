@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     ssr: false,
+    devServer: {
+        port: 8000
+    },
     css: [
         {src:"@/assets/main.css",lang: 'css'},
         {src:"@/assets/style.css",lang: 'css'},
