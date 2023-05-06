@@ -14,7 +14,7 @@
             <div class="row ">
               <div class="col-md-12  mb-3">
                 <div class="flex items-center justify-center">
-                  <img class="w-20 h-20 rounded-full" :src="prev_image" alt="user photo">
+                  <img class="w-20 h-20 rounded-full" :src="typeof user.profile_form.profile_image === 'string' ? (user.profile_form.profile_image ? user.profile_form.profile_image : '/img/no-pic.png') : ConvertImage(user.profile_form.profile_image)" alt="user photo">
                   <label for="upload_profile" type="button" class="text-white relative inline-block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     بارگذاری تصویر
                     <input id="upload_profile" v-on:change="UploadProfile($event)" class="opacity-0 absolute" type="file">
@@ -98,8 +98,8 @@
                   <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">جنسیت</label>
                   <select id="gender"  v-model="user.profile_form.gender"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="">انتخاب کنید</option>
-                    <option value="MALE">زن</option>
-                    <option value="FEMALE">مرد</option>
+                    <option value="FEMALE">زن</option>
+                    <option value="MALE">مرد</option>
                   </select>
                 </div>
               </div>
@@ -254,7 +254,6 @@ export default {
   data: () => ({
     bt1: false,
     bt2: false,
-    prev_image: '/img/no-img.png',
   }),
   setup(){
     const user = useAuthStore()
@@ -274,7 +273,6 @@ export default {
         if(findIndex !== -1){
           this.user.sports_field_children = this.user.sports_field[findIndex].sub_fields
         }
-
       },
       deep: true,
     },
@@ -283,8 +281,6 @@ export default {
         if(this.user.profile_form.coaching_docs.length){
           this.bt2 = true
         }
-        if(this.user.profile_form.profile_image  !==)
-        this.prev_image = this.user.profile_form.profile_image
       },
       deep: true,
     },
@@ -345,11 +341,10 @@ export default {
       let file = event.target.files
       if(file.length){
         this.user.profile_form.profile_image = event.target.files[0]
-        this.prev_image = this.ConvertImage(event.target.files[0])
       }else{
         this.user.profile_form.profile_image = null
-        this.prev_image = '/img/no-img.png'
       }
+      document.getElementById('upload_profile').value = ''
     },
     ConvertImage(image){
       if(!image){

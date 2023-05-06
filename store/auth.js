@@ -19,8 +19,9 @@ export  const useAuthStore = defineStore('auth', {
         sports_field: [],
         sport_club: [],
         profile_form: {degree: "",gender: "",city: "",coach: "",sport_club: "",parent: "",field: ""},
-        sports_field_children: []
-
+        sports_field_children: [],
+        sport_club_form: {city: ""},
+        association_form: {city: ""},
     }),
     getters: {
         logined: (state) => state.login,
@@ -188,11 +189,30 @@ export  const useAuthStore = defineStore('auth', {
                     method: "GET",
                 })
 
-                this.sport_club = data
+                this.sport_club = (data.length ? data[data.length -1 ] : [])
+                this.sport_club_form =  this.sport_club
                 this.sports_field.loading = false
             } catch (e) {
                 toast.error('خطا!')
                 this.sport_club.loading = false
+            }
+        },
+        async getAssociation() {
+            const toast = useToast()
+            this.association_form.loading = true
+            const router = useRouter()
+
+            let url =  `/user/association/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "GET",
+                })
+
+                this.association_form = (data.length ? data[data.length - 1] : {city: ''} )
+                this.association_form.loading = false
+            } catch (e) {
+                toast.error('خطا!')
+                this.association_form.loading = false
             }
         },
 
@@ -244,7 +264,9 @@ export  const useAuthStore = defineStore('auth', {
                 toast.error('لطفا شهر خود را انتخاب نمایید!')
                 return;
             }
-           if(this.profile_form.sport_club) {
+            formData.append('city', this.profile_form.city)
+
+            if(this.profile_form.sport_club) {
                formData.append('sport_club', this.profile_form.sport_club)
            }
             if(!this.profile_form.field){
@@ -324,5 +346,98 @@ export  const useAuthStore = defineStore('auth', {
 
 
         },
+        async SaveSportClub(){
+            let formData  = new FormData()
+            const toast = useToast()
+            if(!this.sport_club_form.name){
+                return  toast.error('لطفا نام را وارد نمایید!')
+            }
+            formData.append('name',this.sport_club_form.name)
+
+            if(!this.sport_club_form.city){
+                return  toast.error('لطفا شهر را انتخاب نمایید!')
+            }
+            formData.append('city',this.sport_club_form.city)
+
+           if(!this.sport_club_form.established_year){
+                return  toast.error('لطفا تاریخ تاسیس را انتخاب نمایید!')
+            }
+            formData.append('established_year',this.sport_club_form.established_year)
+
+           if(!this.sport_club_form.registration_number){
+                return  toast.error('لطفا شماره ثبت را وارد نمایید!')
+            }
+            formData.append('registration_number',this.sport_club_form.registration_number)
+
+           if(!this.sport_club_form.telephone_number){
+                return  toast.error('لطفا شماره تلفن ثابت را وارد نمایید!')
+            }
+            formData.append('telephone_number',this.sport_club_form.telephone_number)
+            if(!this.sport_club_form.postal_code){
+                return  toast.error('لطفا   کد پستی را وارد نمایید!')
+            }
+            formData.append('postal_code',this.sport_club_form.postal_code)
+           if(!this.sport_club_form.license_expiration_date){
+                return  toast.error('لطفا  تاریخ اعتبار مجوز را انتخاب نمایید!')
+            }
+            formData.append('license_expiration_date',this.sport_club_form.license_expiration_date)
+          if(!this.sport_club_form.address){
+                return  toast.error('لطفا   آدرس را وارد نمایید!')
+            }
+            formData.append('address',this.sport_club_form.address)
+
+            if(!this.sport_club_form.license){
+                toast.error('لطفا مجاز باشگاه را بارگذاری نمایید!')
+                return;
+            }
+            if (this.sport_club_form.license instanceof Object) {
+                formData.append('license', this.sport_club_form.license, this.sport_club_form.license.name)
+            }
+            this.sport_club_form.loading = true
+            try {
+                const data = await useApiFetch('/user/sport_club/', {
+                    method: "POST",
+                    body: formData,
+                })
+
+                toast.success('اطلاعات شما با موفقیت ذخیره شد!')
+
+
+                this.sport_club_form.loading = false
+            } catch (e) {
+                toast.error('خطا!')
+                this.sport_club_form.loading = false
+            }
+
+
+        },
+        async SaveAssociation(){
+            if(this.association_form.loading){
+                return;
+            }
+            const toast = useToast()
+
+            if(!this.association_form.city){
+               return toast.error('لطفا شهر اتحادیه را انتخاب نمایید!')
+            }
+            if(!this.association_form.address){
+               return toast.error('لطفا آدرس اتحادیه را انتخاب نمایید!')
+            }
+            this.association_form.loading = true
+            try {
+                const data = await useApiFetch(`/user/association/`, {
+                    method: "POST",
+                    body: this.association_form
+                })
+                 toast.success('اطلاعات اتحادیه با موفقیت بروزرسانی شد!')
+
+                this.association_form.loading = false
+
+            } catch (e) {
+                toast.error('خطا!')
+                this.association_form.loading = false
+
+            }
+        }
     }
 })
