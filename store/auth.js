@@ -275,10 +275,11 @@ export  const useAuthStore = defineStore('auth', {
                 return;
             }
             formData.append('field',this.profile_form.field)
-            if(!this.profile_form.coach){
-                toast.error('لطفا مربی خود را انتخاب نمایید!')
+            if(!this.profile_form.address){
+                toast.error('لطفا آدرس را وارد نمایید!')
                 return;
             }
+            formData.append('address',this.profile_form.address)
             formData.append('coach',this.profile_form.coach)
             if(!this.profile_form.father_name){
                 toast.error('لطفا نام پدر خود را انتخاب نمایید!')
