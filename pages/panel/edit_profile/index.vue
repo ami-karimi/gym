@@ -294,11 +294,13 @@ export default {
     }
   },
   async mounted() {
-   await this.user.getProfile()
-   await this.user.getCity()
-   await this.user.getCoach()
-   await this.user.getSportFiled()
-   await this.user.getSportClub()
+    const [profile,city,coach,filed,sport_club] = await Promise.all([
+         await this.user.getCity(),
+         await this.user.getCoach(),
+         await this.user.getSportFiled(),
+         await this.user.getSportClub(),
+         await this.user.getProfile(),
+     ]);
   },
   methods:{
     Changefederation_card(value){

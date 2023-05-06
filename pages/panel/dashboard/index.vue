@@ -154,9 +154,11 @@ export  default {
     }
   },
   async mounted() {
-    await this.user.getCity()
-    await this.user.getAssociation()
-    await this.user.getSportClub()
+    const [city,Association,SportClub] = await Promise.all([
+    await this.user.getCity(),
+    await this.user.getAssociation(),
+    await this.user.getSportClub(),
+   ])
 
   },
 
