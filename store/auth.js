@@ -257,6 +257,16 @@ export  const useAuthStore = defineStore('auth', {
                 return;
             }
             formData.append('coach',this.profile_form.coach)
+            if(!this.profile_form.father_name){
+                toast.error('لطفا نام پدر خود را انتخاب نمایید!')
+                return;
+            }
+
+            if (this.profile_form.profile_image instanceof Object) {
+                formData.append('profile_image', this.profile_form.profile_image, this.profile_form.profile_image.name)
+            }
+
+            formData.append('father_name',this.profile_form.father_name)
             if(!this.profile_form.federation_card){
                 toast.error('لطفا کارت فدراسیون خود را بارگذاری نمایید!')
                 return;
@@ -277,7 +287,9 @@ export  const useAuthStore = defineStore('auth', {
             if (this.profile_form.coaching_docs instanceof Object) {
                 if(this.profile_form.coaching_docs.length) {
                     for (let i = 0; i < this.profile_form.coaching_docs.length; i++) {
-                        formData.append('coaching_docs', this.profile_form.coaching_docs[i], this.profile_form.coaching_docs[i].name)
+                        if(this.profile_form.coaching_docs[i].name) {
+                            formData.append('coaching_docs', this.profile_form.coaching_docs[i], this.profile_form.coaching_docs[i].name)
+                        }
                     }
                 }
             }
@@ -285,7 +297,9 @@ export  const useAuthStore = defineStore('auth', {
             if (this.profile_form.referee_docs instanceof Object) {
                 if(this.profile_form.referee_docs.length) {
                     for (let is = 0; is < this.profile_form.referee_docs.length; is++) {
-                        formData.append('referee_docs', this.profile_form.referee_docs[is], this.profile_form.referee_docs[is].name)
+                        if( this.profile_form.referee_docs[is].name) {
+                            formData.append('referee_docs', this.profile_form.referee_docs[is], this.profile_form.referee_docs[is].name)
+                        }
                     }
                 }
             }
