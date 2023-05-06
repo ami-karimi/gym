@@ -13,7 +13,7 @@
           <div  :class="{'opacity-20' : user.profile_form.loading || user.user_profile.loading}" class="grid gap-6 mb-6 md:grid-cols-1">
             <div class="row ">
               <div class="col-md-12  mb-3">
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-start">
                   <img class="w-20 h-20 rounded-full" :src="typeof user.profile_form.profile_image === 'string' ? (user.profile_form.profile_image ? user.profile_form.profile_image : '/img/no-pic.png') : ConvertImage(user.profile_form.profile_image)" alt="user photo">
                   <label for="upload_profile" type="button" class="text-white relative inline-block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     بارگذاری تصویر
@@ -121,29 +121,6 @@
                   </select>
                 </div>
               </div>
-
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="field" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته اصلی</label>
-                  <select id="field"  v-model="user.profile_form.parent"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="">انتخاب کنید</option>
-                    <option v-for="item in user.sports_field" :value="item.id">{{ item.name }}</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="field_2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته فرعی</label>
-                  <select id="field_2" :disabled="!user.profile_form.parent"  v-model="user.profile_form.field"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="">انتخاب کنید</option>
-                    <option v-for="item in user.sports_field_children" :value="item.id">{{ item.name }}</option>
-                  </select>
-                </div>
-              </div>
-
-
-
               <div class="col-md-6  mb-3">
                 <div>
                   <label for="coach" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">مربی</label>
@@ -153,6 +130,30 @@
                   </select>
                 </div>
               </div>
+
+
+              <div class="col-md-6  mb-3">
+                <div>
+                  <label for="field" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته اصلی</label>
+                  <select id="field"  v-model="user.profile_form.parent_sport_field"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">انتخاب کنید</option>
+                    <option v-for="item in user.sports_field" :value="item.id">{{ item.name }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-6  mb-3">
+                <div>
+                  <label for="field_2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته فرعی</label>
+                  <select id="field_2" :disabled="!user.profile_form.parent_sport_field"  v-model="user.profile_form.field"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">انتخاب کنید</option>
+                    <option v-for="item in user.sports_field_children" :value="item.id">{{ item.name }}</option>
+                  </select>
+                </div>
+              </div>
+
+
+
 
               <div class="col-md-12">
               <div class="row items-center "  v-if="!user.user_profile.loading" >
@@ -266,9 +267,9 @@ export default {
     }
   },
   watch:{
-    "user.profile_form.parent" : {
+    "user.profile_form.parent_sport_field" : {
       async handler(){
-        let id = this.user.profile_form.parent
+        let id = this.user.profile_form.parent_sport_field
         let findIndex = this.user.sports_field.findIndex(item => item.id == id )
         if(findIndex !== -1){
           this.user.sports_field_children = this.user.sports_field[findIndex].sub_fields
