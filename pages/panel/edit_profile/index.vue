@@ -298,7 +298,13 @@ export default {
         }
       },
       deep: true,
-    }
+    },
+    "user.profile_form.gender" : {
+      async handler(value){
+        this.user.getCoach(this.user.profile_form.gender)
+      },
+      deep: true,
+    },
   },
   async mounted() {
     const [profile,city,coach,filed,sport_club] = await Promise.all([

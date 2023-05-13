@@ -3,23 +3,28 @@
     <section class="max-w-[400px]  w-full">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-white dark:text-white">
-           باشگاه رزمی و ورزشی
+         ایجاد حساب کاربری
         </a>
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              ورود به حساب
-            </h1>
+
             <div class="space-y-4 md:space-y-6">
               <div >
                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شماره همراه</label>
                 <div class="relative">
                   <input type="text" :disabled="auth.form.step === 2" v-model="auth.form.phone_number" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="09111234567" required>
                   <div v-if="auth.form.step === 2" :class="{'text-gray-500': auth.form.step === 1,'text-blue-500': auth.form.step === 2}" class="absolute  top-2 left-2  whitespace-normal cursor-pointer" @click="auth.form.step = 1">
-                  ویرایش
+                    ویرایش
                   </div>
                 </div>
               </div>
+              <div >
+                <label for="national_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی</label>
+                <div class="relative">
+                  <input type="text" :disabled="auth.form.step === 2" v-model="auth.form.national_code" id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="2150306542" required>
+                </div>
+              </div>
+
               <div v-if="auth.form.step === 2">
                 <label for="sms_token" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد فعال سازی</label>
                 <input  style="letter-spacing: 20px;" type="text" v-model="auth.form.sms_token" id="sms_token" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center" placeholder="12345" required>
@@ -28,7 +33,7 @@
 
 
               <div class="flex items-center justify-center">
-                <button @click="auth.SendLogin()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                <button @click="auth.SendRegister()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                   <span v-if="auth.form.loading">
                   <svg aria-hidden="true" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
@@ -44,7 +49,7 @@
               </div>
 
               <div class="text-white text-center">
-                حساب کاربری ندارید؟ <nuxt-link class="text-blue-600" to="/register">ثبت نام کنید</nuxt-link>
+                حساب کاربری دارید؟ <nuxt-link class="text-blue-600" to="/"> ورود به حساب</nuxt-link>
               </div>
 
             </div>

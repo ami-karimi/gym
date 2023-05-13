@@ -9,7 +9,7 @@ export  const useAuthStore = defineStore('auth', {
         user_token: "",
         token_type: "",
         form: {
-            loading: true,
+            loading: false,
             phone_number: "",
             sms_token: "",
             step: 1,
@@ -23,6 +23,8 @@ export  const useAuthStore = defineStore('auth', {
         sports_field_children: [],
         sport_club_form: {city: "",loading: true},
         association_form: {city: "",loading: true},
+        associationAthletes: [],
+        SportClubAthletes: [],
     }),
     getters: {
         logined: (state) => state.login,
@@ -54,6 +56,8 @@ export  const useAuthStore = defineStore('auth', {
             this.user_token = token
         },
         async SendLogin() {
+            const { $error_log } = useNuxtApp()
+
             var
                 persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
                 arabicNumbers  = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g],
@@ -80,7 +84,7 @@ export  const useAuthStore = defineStore('auth', {
             this.form.loading = true
             const router = useRouter()
 
-            let url = (this.form.sms_token ? '/user/sso/verify/' : '/user/sso/send_sms/')
+            let url = (this.form.sms_token ? '/user/sso/verify-login/' : '/user/sso/sms/login/')
             try {
                 const data = await useApiFetch(url, {
                     method: "POST",
@@ -99,11 +103,76 @@ export  const useAuthStore = defineStore('auth', {
 
                 this.form.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.form.loading = false
+            }
+        },
+        async SendRegister() {
+            const { $error_log } = useNuxtApp()
+
+
+            var
+                persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g],
+                arabicNumbers  = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g],
+                fixNumbers = function (str)
+                {
+                    if(typeof str === 'string')
+                    {
+                        for(var i=0; i<10; i++)
+                        {
+                            str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+                        }
+                    }
+                    return str;
+                };
+
+            const toast = useToast()
+            if (!this.form.phone_number) {
+                toast.error('لطفا شماره تماس خود را وارد نمایید')
+                return;
+            }
+         if (!this.form.national_code) {
+                toast.error('لطفا کد ملی  خود را وارد نمایید')
+                return;
+            }
+
+            this.form.phone_number = fixNumbers(this.form.phone_number)
+            this.form.national_code = fixNumbers(this.form.national_code)
+            this.form.sms_token = fixNumbers(this.form.sms_token)
+            this.form.loading = true
+            const router = useRouter()
+
+            let url = (this.form.sms_token ? '/user/sso/verify-register/' : '/user/sso/sms/register/')
+            try {
+                const data = await useApiFetch(url, {
+                    method: "POST",
+                    body: this.form,
+                })
+
+                if(data.token) {
+                    this.SetToken(data.token, 'user')
+                    toast.success('با موفقیت وارد حساب کاربری شما ایجاد شد!')
+                    router.push('/panel/edit_profile')
+                }else{
+                    this.form.step = 2
+                    toast.success('کد فعال سازی برای شما ارسال شد لطفا در کادر (کد تایید) وارد نمایید!')
+
+                }
+
+                this.form.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+
                 this.form.loading = false
             }
         },
         async getProfile() {
+            const { $error_log } = useNuxtApp()
+
             const toast = useToast()
             this.user_profile.loading = true
             const router = useRouter()
@@ -117,11 +186,15 @@ export  const useAuthStore = defineStore('auth', {
                 this.profile_form = data
                 this.user_profile.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.user_profile.loading = false
             }
         },
         async getCity() {
+            const { $error_log } = useNuxtApp()
+
             const toast = useToast()
             this.city.loading = true
             const router = useRouter()
@@ -135,16 +208,20 @@ export  const useAuthStore = defineStore('auth', {
 
                 this.city.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.city.loading = false
             }
         },
-        async getCoach() {
+        async getCoach(sex = 'MALE') {
+            const { $error_log } = useNuxtApp()
+
             const toast = useToast()
             this.coach.loading = true
             const router = useRouter()
 
-            let url =  `/user/coachs`
+            let url =  `/user/coachs?gender=${sex}`
             try {
                 const data = await useApiFetch(url, {
                     method: "GET",
@@ -153,11 +230,16 @@ export  const useAuthStore = defineStore('auth', {
                 this.coach = data
                 this.coach.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.coach.loading = false
             }
         },
         async getSportFiled(parent = false) {
+            const { $error_log } = useNuxtApp()
+
+
             const toast = useToast()
             this.sports_field.loading = true
             const router = useRouter()
@@ -175,11 +257,15 @@ export  const useAuthStore = defineStore('auth', {
                 }
                 this.sports_field.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.sports_field.loading = false
             }
         },
         async getSportClub() {
+            const { $error_log } = useNuxtApp()
+
             const toast = useToast()
             this.sport_club.loading = true
             const router = useRouter()
@@ -191,14 +277,46 @@ export  const useAuthStore = defineStore('auth', {
                 })
 
                 this.sport_club = (data.length ? data[data.length -1 ] : [])
+                if(this.sport_club.id){
+                    this.getSportClubAthletes(this.sport_club.id)
+                }
                 this.sport_club_form =  this.sport_club
                 this.sports_field.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.sport_club.loading = false
             }
         },
+        async getSportClubAthletes(id) {
+            if(!id){
+                return false;
+            }
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.SportClubAthletes.loading = true
+            const router = useRouter()
+
+            let url =  `/user/sport_club/${id}/athletes/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "GET",
+                })
+
+                this.SportClubAthletes = data.athletes
+                this.SportClubAthletes.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.SportClubAthletes.loading = false
+            }
+        },
         async getAssociation() {
+            const { $error_log } = useNuxtApp()
+
             const toast = useToast()
             this.association_form.loading = true
             const router = useRouter()
@@ -210,14 +328,46 @@ export  const useAuthStore = defineStore('auth', {
                 })
 
                 this.association_form = (data.length ? data[data.length - 1] : {city: ''} )
+                if(this.association_form.id) {
+                    this.getAssociationAthletes(this.association_form.id)
+                }
                 this.association_form.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.association_form.loading = false
             }
         },
+        async getAssociationAthletes(id = false){
+            const { $error_log } = useNuxtApp()
+            if(!id){
+                return;
+            }
 
+            const toast = useToast()
+            this.associationAthletes.loading = true
+            const router = useRouter()
+
+            let url =  `/user/association/${id}/athletes/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "GET",
+                })
+
+                this.associationAthletes = data.athletes
+                this.associationAthletes.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.associationAthletes.loading = false
+            }
+
+        },
         async SaveProfile(){
+            const { $error_log } = useNuxtApp()
+
             let formData  = new FormData()
             const toast = useToast()
 
@@ -341,7 +491,9 @@ export  const useAuthStore = defineStore('auth', {
 
                 this.profile_form.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.profile_form.loading = false
             }
 
@@ -349,6 +501,8 @@ export  const useAuthStore = defineStore('auth', {
 
         },
         async SaveSportClub(){
+            const { $error_log } = useNuxtApp()
+
             let formData  = new FormData()
             const toast = useToast()
             if(!this.sport_club_form.name){
@@ -395,25 +549,34 @@ export  const useAuthStore = defineStore('auth', {
             if (this.sport_club_form.license instanceof Object) {
                 formData.append('license', this.sport_club_form.license, this.sport_club_form.license.name)
             }
+            if(this.sport_club_form.id){
+                formData.append('id', this.sport_club_form.id)
+            }
+            let url = (!this.sport_club_form.id ? `/user/sport_club/` : `/user/sport_club/${this.sport_club_form.id}/` )
+
             this.sport_club_form.loading = true
             try {
-                const data = await useApiFetch('/user/sport_club/', {
-                    method: "POST",
+                const data = await useApiFetch(url, {
+                    method: !this.sport_club_form.id ? "POST" : "PUT",
                     body: formData,
                 })
-
+                this.sport_club_form.id = data.id
                 toast.success('اطلاعات شما با موفقیت ذخیره شد!')
 
 
                 this.sport_club_form.loading = false
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.sport_club_form.loading = false
             }
 
 
         },
         async SaveAssociation(){
+            const { $error_log } = useNuxtApp()
+
             if(this.association_form.loading){
                 return;
             }
@@ -426,17 +589,20 @@ export  const useAuthStore = defineStore('auth', {
                return toast.error('لطفا آدرس اتحادیه را انتخاب نمایید!')
             }
             this.association_form.loading = true
+            let url = (!this.association_form.id ? `/user/association/` : `/user/association/${this.association_form.id}/` )
             try {
-                const data = await useApiFetch(`/user/association/`, {
-                    method: "POST",
+                const data = await useApiFetch(url, {
+                    method: !this.association_form.id ? "POST" : "PUT",
                     body: this.association_form
                 })
                  toast.success('اطلاعات اتحادیه با موفقیت بروزرسانی شد!')
-
+                this.association_form.id = data.id
                 this.association_form.loading = false
 
             } catch (e) {
-                toast.error('خطا!')
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
                 this.association_form.loading = false
 
             }
