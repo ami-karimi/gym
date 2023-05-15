@@ -137,6 +137,8 @@
 
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="row">
 
               <div class="col-md-6  mb-3">
                 <div>
@@ -144,7 +146,6 @@
                   <input type="text" v-model="user.profile_form.first_name" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام شما به فارسی" required>
                 </div>
               </div>
-
               <div class="col-md-6  mb-3">
                 <div>
                   <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام خانوادگی</label>
@@ -163,70 +164,67 @@
                   <input type="text" v-model="user.profile_form.telephone_number" id="telephone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="شماره تلفن ثابت همراه با پیش شماره" required>
                 </div>
               </div>
-
-
-
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ایمیل</label>
-                  <input type="email" v-model="user.profile_form.email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@gmail.com" dir="ltr" required>
+                  <div class="col-md-6  mb-3">
+                    <div>
+                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ایمیل</label>
+                      <input type="email" v-model="user.profile_form.email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@gmail.com" dir="ltr" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6  mb-3">
+                    <div>
+                      <label for="national_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی</label>
+                      <input type="text" v-model="user.profile_form.national_code" id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="215101214" dir="rtl" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6  mb-3">
+                    <div>
+                      <label for="birth_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  تاریخ تولد</label>
+                      <input type="text" v-model="user.profile_form.birth_date" id="birth_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1378-10-12" required>
+                      <date-picker
+                          v-model="user.profile_form.birth_date"
+                          type="date"
+                          format="jYYYY-jMM-jDD"
+                          display-format="jYYYY-jMM-jDD"
+                          :element="`birth_date`"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6  mb-3">
+                    <div>
+                      <label for="degree" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">تحصیلات</label>
+                      <select id="degree"  v-model="user.profile_form.degree"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">انتخاب کنید</option>
+                        <option value="DIPLOMA">دیپلم</option>
+                        <option value="ASSOCIATE">کاردانی</option>
+                        <option value="BACHELOR">کارشناسی</option>
+                        <option value="MASTER">ارشد</option>
+                        <option value="PHD">دکترا</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6  mb-3">
+                    <div>
+                      <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">جنسیت</label>
+                      <select id="gender"  v-model="user.profile_form.gender"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">انتخاب کنید</option>
+                        <option value="FEMALE">زن</option>
+                        <option value="MALE">مرد</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6  mb-3">
+                    <div>
+                      <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شهر</label>
+                      <select id="city"  v-model="user.profile_form.city"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">انتخاب کنید</option>
+                        <option v-for="item in user.city" :value="item.id">{{ item.name }}</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="national_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی</label>
-                  <input type="text" v-model="user.profile_form.national_code" id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="215101214" dir="rtl" required>
-                </div>
-              </div>
-
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="birth_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  تاریخ تولد</label>
-                  <input type="text" v-model="user.profile_form.birth_date" id="birth_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1378-10-12" required>
-                  <date-picker
-                      v-model="user.profile_form.birth_date"
-                      type="date"
-                      format="jYYYY-jMM-jDD"
-                      display-format="jYYYY-jMM-jDD"
-                      :element="`birth_date`"
-                  />
-                </div>
-              </div>
-
-
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="degree" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">تحصیلات</label>
-                  <select id="degree"  v-model="user.profile_form.degree"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="">انتخاب کنید</option>
-                    <option value="DIPLOMA">دیپلم</option>
-                    <option value="ASSOCIATE">کاردانی</option>
-                    <option value="BACHELOR">کارشناسی</option>
-                    <option value="MASTER">ارشد</option>
-                    <option value="PHD">دکترا</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">جنسیت</label>
-                  <select id="gender"  v-model="user.profile_form.gender"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="">انتخاب کنید</option>
-                    <option value="FEMALE">زن</option>
-                    <option value="MALE">مرد</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6  mb-3">
-                <div>
-                  <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شهر</label>
-                  <select id="city"  v-model="user.profile_form.city"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="">انتخاب کنید</option>
-                    <option v-for="item in user.city" :value="item.id">{{ item.name }}</option>
-                  </select>
-                </div>
-              </div>
+              <div class="col-md-6 ">
+                <div class="row">
               <div class="col-md-6  mb-3" v-if="select_type.includes('user')">
                 <div>
                   <label for="sport_club" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">باشگاه ورزشی</label>
@@ -245,8 +243,6 @@
                   </select>
                 </div>
               </div>
-
-
               <div class="col-md-6  mb-3">
                 <div>
                   <label for="field" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته اصلی</label>
@@ -256,7 +252,6 @@
                   </select>
                 </div>
               </div>
-
               <div class="col-md-6  mb-3">
                 <div>
                   <label for="field_2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته فرعی</label>
@@ -266,16 +261,12 @@
                   </select>
                 </div>
               </div>
-
-
-
               <div class="col-md-12 mb-3">
 
                   <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">آدرس</label>
                   <textarea id="message" v-model="user.profile_form.address" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="آدرس کامل را تایپ کنید..."></textarea>
 
               </div>
-
               <div class="col-md-12">
               <div class="row items-center "  v-if="!user.user_profile.loading" >
                 <div class="col-md-6">
@@ -289,6 +280,8 @@
               </div>
               </div>
 
+                  </div>
+                </div>
 
             </div>
 
