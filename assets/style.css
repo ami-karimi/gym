@@ -800,3 +800,6 @@ body {
 }
 
 
+.transform-none {
+    transform: none !important;
+}

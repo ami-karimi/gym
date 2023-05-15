@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     ],
     modules: [
         '@pinia/nuxt',
-        '@nuxtjs/tailwindcss'
     ],
     build: {
         extractCSS: true,

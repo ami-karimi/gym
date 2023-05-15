@@ -1,12 +1,14 @@
 <template>
-  <div dir="rtl">
+  <div dir="rtl " class=" overflow-hidden">
 
     <!-- <LoadingBase v-if="loading" /> -->
     <UserHeader />
     <UserSide  />
 
     <div class="sm:p-4 sm:pt-4 mt-14  pt-10 p-4 sm:mr-64" >
-      <slot />
+      <div dir="rtl">
+        <slot />
+      </div>
     </div>
   </div>
 </template>

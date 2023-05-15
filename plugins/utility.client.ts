@@ -4,7 +4,14 @@ export default defineNuxtPlugin((nuxtApp) => {
             error_log: function (errors: object){
                 let re_message : any = []
 
+                if(errors.message){
+                    re_message.push(errors.message)
+
+                    return re_message.join('\n');
+                }
+                
                 if(errors.length){
+
                     if(errors[0]){
                         re_message.push(errors[0])
 
