@@ -11,8 +11,8 @@
         <div class="row">
           <div v-if="files.length" v-for="(item,index) in files" :class="`${!multiple ? 'col-md-12' : 'col-md-6'} mb-3 mt-3 rounded-lg  relative`">
             <div class="relative">
-            <img  v-if="multiple" :src="(item.id ? item.file : ConvertImage(item))"  class="p-1.5 w-full  rounded-lg grayscale hover:grayscale-0 transition  overflow-hidden"   style="border-radius: 20px;height:172px;object-fit: cover;min-width: 200px;" />
-            <img  v-else :src="(typeof item === 'string' ? item : ConvertImage(item))" class="p-1.5 w-full rounded-lg grayscale hover:grayscale-0 transition  overflow-hidden"   style="border-radius: 20px;height:172px;object-fit: cover;min-width: 200px;" />
+            <img  v-if="multiple" :src="(item.id ? item.file : ConvertImage(item))"  class="p-1.5 w-full  rounded-lg grayscale hover:grayscale-0 transition  overflow-hidden"   style="border-radius: 20px;height:172px;object-fit: cover;min-width: 100px;" />
+            <img  v-else :src="(typeof item === 'string' ? item : ConvertImage(item))" class="p-1.5 w-full rounded-lg grayscale hover:grayscale-0 transition  overflow-hidden"   style="border-radius: 20px;height:172px;object-fit: cover;min-width: 100px;" />
             <div @click="remImage(index)"  class="trs w-full  z-50 absolute  text-white text-xs right-0 pl-2 bottom-1 pr-2">
               <div class="bg-red-400 text-center  pt-1 pb-1" style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
               حذف تصویر

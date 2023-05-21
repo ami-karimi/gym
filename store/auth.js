@@ -25,6 +25,9 @@ export  const useAuthStore = defineStore('auth', {
         association_form: {city: "",loading: true},
         associationAthletes: [],
         SportClubAthletes: [],
+        CoachProfile: {docs: []},
+        RefereeProfile: {docs: []},
+        AthleteProfile: {coach: []},
     }),
     getters: {
         logined: (state) => state.login,
@@ -192,6 +195,179 @@ export  const useAuthStore = defineStore('auth', {
                 this.user_profile.loading = false
             }
         },
+        async getCoachProfile() {
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.CoachProfile.loading = true
+
+            let url =  `/user/coach-profile/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "GET",
+                })
+
+                this.CoachProfile = (data.docs ? data : {docs: []})
+                this.CoachProfile.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.CoachProfile.loading = false
+            }
+        },
+        async SaveCoachProfile() {
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.CoachProfile.loading = true
+
+            let form = new FormData()
+
+            if(!this.CoachProfile.docs){
+                toast.error('لطفا مدارک مربی گری خود را وارد نمایید!')
+                return;
+            }
+            if(!this.profile_form.gender){
+                toast.error('لطفا جنسیت خود را از قسمت تکمیل پروفایل انتخاب نمایید!')
+                return;
+            }
+
+            if (this.CoachProfile.docs instanceof Object) {
+                if(this.CoachProfile.docs.length) {
+                    for (let i = 0; i < this.CoachProfile.docs.length; i++) {
+                        if(this.CoachProfile.docs[i].name) {
+                            form.append('docs', this.CoachProfile.docs[i], this.CoachProfile.docs[i].name)
+                        }
+                    }
+                }
+            }
+
+
+
+            const data = await useApiFetch('/user/profile/', {
+                method: "PUT",
+                body: {gender: this.profile_form.gender},
+            })
+
+            let url =  `/user/coach-profile/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "PUT",
+                    body: form
+                })
+
+                this.CoachProfile.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.CoachProfile.loading = false
+            }
+        },
+
+
+        async getRefereeProfile() {
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.RefereeProfile.loading = true
+
+            let url =  `/user/referee-profile/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "GET",
+                })
+
+                this.RefereeProfile = (data.docs ? data : {docs: []})
+                this.RefereeProfile.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.RefereeProfile.loading = false
+            }
+        },
+        async SaveRefereeProfile() {
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.RefereeProfile.loading = true
+
+            let form = new FormData()
+
+            if(!this.RefereeProfile.docs){
+                toast.error('لطفا مدارک مربی گری خود را وارد نمایید!')
+                return;
+            }
+
+            if (this.RefereeProfile.docs instanceof Object) {
+                if(this.RefereeProfile.docs.length) {
+                    for (let i = 0; i < this.RefereeProfile.docs.length; i++) {
+                        if(this.RefereeProfile.docs[i].name) {
+                            form.append('docs', this.RefereeProfile.docs[i], this.RefereeProfile.docs[i].name)
+                        }
+                    }
+                }
+            }
+
+            let url =  `/user/referee-profile/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "PUT",
+                    body: form
+                })
+
+                this.RefereeProfile.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.RefereeProfile.loading = false
+            }
+        },
+
+        async SaveAthleteProfile(){
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.AthleteProfile.loading = true
+
+            let url =  `/user/athlete-profile/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "PUT",
+                    body: {coach: this.AthleteProfile.coach,sport_club: this.AthleteProfile.sport_club }
+                })
+
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.AthleteProfile.loading = false
+            }
+        },
+        async getAthleteProfile() {
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.AthleteProfile.loading = true
+
+            let url =  `/user/athlete-profile/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "GET",
+                })
+
+                this.AthleteProfile = data
+                this.AthleteProfile.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.AthleteProfile.loading = false
+            }
+        },
         async getCity() {
             const { $error_log } = useNuxtApp()
 
@@ -215,13 +391,16 @@ export  const useAuthStore = defineStore('auth', {
             }
         },
         async getCoach(sex = 'MALE') {
+            if(sex === null){
+                return;
+            }
             const { $error_log } = useNuxtApp()
 
             const toast = useToast()
             this.coach.loading = true
             const router = useRouter()
 
-            let url =  `/user/coachs?gender=${sex}`
+            let url =  `/user/coachs/?gender=${sex}`
             try {
                 const data = await useApiFetch(url, {
                     method: "GET",
@@ -441,13 +620,15 @@ export  const useAuthStore = defineStore('auth', {
             }
 
             formData.append('father_name',this.profile_form.father_name)
-            if(!this.profile_form.federation_card){
-                toast.error('لطفا کارت فدراسیون خود را بارگذاری نمایید!')
-                return;
-            }
-            if (this.profile_form.federation_card instanceof Object) {
-                    formData.append('federation_card', this.profile_form.federation_card, this.profile_form.federation_card.name)
 
+            if(this.CoachProfile.docs.length || this.RefereeProfile.docs.length || this.AthleteProfile.sport_club ) {
+                if (!this.profile_form.federation_card) {
+                    toast.error('لطفا کارت فدراسیون خود را بارگذاری نمایید!')
+                    return;
+                }
+               if (this.profile_form.federation_card instanceof Object) {
+                    formData.append('federation_card', this.profile_form.federation_card, this.profile_form.federation_card.name)
+               }
             }
             if(!this.profile_form.insurance_card){
                 toast.error('لطفا کارت بیمه خود را بارگذاری نمایید!')
@@ -480,6 +661,7 @@ export  const useAuthStore = defineStore('auth', {
 
             this.profile_form.loading = true
 
+            await this.SaveAthleteProfile()
             try {
                 const data = await useApiFetch('/user/profile/', {
                     method: "PUT",

@@ -1,6 +1,6 @@
 <template>
   <nuxt-layout name="user">
-    <div class="sm:h-[215px] h-[425px] mt-6">
+    <div class="sm:h-[250px] h-[450px] mt-6">
       <div class="row">
 
         <div class="col-md-4 col-xs-6">
@@ -24,20 +24,43 @@
             <ul v-if="select_type.includes('user')"  class="w-[200px] ml-auto sm:mx-auto mt-3">
               <li class="flex items-center mb-2">
                 <div class="w-[30px]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                  <svg v-if="!user.profile_form.gender" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
                     <path fill="#f44336" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
                     <path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z" />
                     <path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z" />
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                    <path fill="#4caf50" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                    <path fill="#ccff90" d="M34.602,14.602L21,28.199l-5.602-5.598l-2.797,2.797L21,33.801l16.398-16.402L34.602,14.602z" />
+                  </svg>
+                </div>
+                <span class="text-xs sm:text-sm"> انتخاب جنسیت</span>
+              </li>
+
+              <li class="flex items-center mb-2">
+                <div class="w-[30px]">
+                  <svg v-if="!user.AthleteProfile.coach.length" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                    <path fill="#f44336" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                    <path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z" />
+                    <path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z" />
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                    <path fill="#4caf50" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                    <path fill="#ccff90" d="M34.602,14.602L21,28.199l-5.602-5.598l-2.797,2.797L21,33.801l16.398-16.402L34.602,14.602z" />
                   </svg>
                 </div>
                 <span class="text-xs sm:text-sm"> انتخاب مربی</span>
               </li>
               <li class="flex items-center">
                 <div class="w-[30px]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                  <svg v-if="!user.AthleteProfile.sport_club" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
                     <path fill="#f44336" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
                     <path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z" />
                     <path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z" />
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                    <path fill="#4caf50" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                    <path fill="#ccff90" d="M34.602,14.602L21,28.199l-5.602-5.598l-2.797,2.797L21,33.801l16.398-16.402L34.602,14.602z" />
                   </svg>
                 </div>
                 <span class="text-xs sm:text-sm"> انتخاب باشگاه ورزشی</span>
@@ -68,11 +91,31 @@
             <ul v-if="select_type.includes('coach')"  class="w-[200px] mx-auto mt-3">
               <li class="flex items-center mb-2">
                 <div class="w-[30px]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                  <svg v-if="!user.profile_form.gender" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
                     <path fill="#f44336" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
                     <path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z" />
                     <path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z" />
                   </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                    <path fill="#4caf50" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                    <path fill="#ccff90" d="M34.602,14.602L21,28.199l-5.602-5.598l-2.797,2.797L21,33.801l16.398-16.402L34.602,14.602z" />
+                  </svg>
+                </div>
+                <span class="text-xs sm:text-sm"> انتخاب جنسیت</span>
+              </li>
+
+              <li class="flex items-center mb-2">
+                <div class="w-[30px]">
+                  <svg v-if="!this.user.CoachProfile.docs.length" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                    <path fill="#f44336" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                    <path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z" />
+                    <path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z" />
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                    <path fill="#4caf50" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                    <path fill="#ccff90" d="M34.602,14.602L21,28.199l-5.602-5.598l-2.797,2.797L21,33.801l16.398-16.402L34.602,14.602z" />
+                  </svg>
+
                 </div>
                 <span class="text-xs sm:text-sm">  بارگذاری مدارک</span>
               </li>
@@ -98,11 +141,16 @@
             <ul v-if="select_type.includes('ref')"  class="w-[200px] mx-auto mt-3">
               <li class="flex items-center mb-2">
                 <div class="w-[30px]">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                  <svg v-if="!user.RefereeProfile.docs.length" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
                     <path fill="#f44336" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
                     <path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z" />
                     <path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z" />
                   </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
+                    <path fill="#4caf50" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                    <path fill="#ccff90" d="M34.602,14.602L21,28.199l-5.602-5.598l-2.797,2.797L21,33.801l16.398-16.402L34.602,14.602z" />
+                  </svg>
+
                 </div>
                 <span class="text-xs sm:text-sm">  بارگذاری مدارک</span>
               </li>
@@ -183,7 +231,7 @@
                       <date-picker
                           v-model="user.profile_form.birth_date"
                           type="date"
-                          format="jYYYY-jMM-jDD"
+                          format="YYYY-MM-DD"
                           display-format="jYYYY-jMM-jDD"
                           :element="`birth_date`"
                       />
@@ -225,22 +273,48 @@
               </div>
               <div class="col-md-6 ">
                 <div class="row">
-              <div class="col-md-6  mb-3" v-if="select_type.includes('user')">
+              <div class="col-md-12  mb-3" v-if="select_type.includes('user')">
                 <div>
                   <label for="sport_club" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">باشگاه ورزشی</label>
-                  <select id="sport_club"  v-model="user.profile_form.sport_club"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <select id="sport_club"  v-model="user.AthleteProfile.sport_club"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="">انتخاب کنید</option>
                     <option  :value="user.sport_club.id">{{ user.sport_club.name }}</option>
                   </select>
                 </div>
               </div>
-              <div class="col-md-6  mb-3" v-if="select_type.includes('user')">
-                <div>
-                  <label for="coach" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">مربی</label>
-                  <select id="coach"  v-model="user.profile_form.coach"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="">انتخاب کنید</option>
-                    <option v-for="item in user.coach" :value="item.id">{{ item.first_name }} {{ item.last_name }}</option>
-                  </select>
+              <div class="col-md-12  mb-3" v-if="select_type.includes('user')">
+                <div class="relative">
+                  <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">مربی</label>
+                  <Multiselect
+                      v-model="coachSelect"
+                      :options="user.coach.map(item => ({...item,value: item.first_name+' '+item.last_name}))"
+                      mode="tags"
+                      label="value"
+                      :searchable="true"
+                      :object="true"
+                      placeholder="شما میتوانید 1 یا چند مربی انتخاب نمایید"
+                  >
+
+                    <template v-slot:tag="{ option, handleTagRemove, disabled }">
+                      <div
+                          class="multiselect-tag is-user"
+                          :class="{
+          'is-disabled': disabled
+        }"
+                      >
+                        <img class="w-[16px] h-[16px] rounded-lg ml-2" :src="(option.profile_image ? option.profile_image : '/img/no-img.png')">
+                        {{ option.first_name }}   {{ option.last_name }}
+                        <span
+                            v-if="!disabled"
+                            class="multiselect-tag-remove"
+                            @mousedown.prevent="handleTagRemove(option, $event)"
+                        >
+          <span class="multiselect-tag-remove-icon"></span>
+        </span>
+                      </div>
+                    </template>
+
+                  </Multiselect>
                 </div>
               </div>
               <div class="col-md-6  mb-3">
@@ -269,12 +343,14 @@
               </div>
               <div class="col-md-12">
               <div class="row items-center "  v-if="!user.user_profile.loading" >
-                <div class="col-md-6">
-                  <UploadFile :multiple="false" :last="user.profile_form.federation_card" @update_image="Changefederation_card" id_input="inp-1" label="کارت فدراسیون *"></UploadFile>
-                </div>
+
 
                 <div class="col-md-6">
                   <UploadFile :multiple="false" :last="user.profile_form.insurance_card" @update_image="Changeinsurance_card" id_input="inp-2"  label="کارت بیمه *"></UploadFile>
+                </div>
+
+                <div class="col-md-6" v-if="this.select_type.length">
+                  <UploadFile :multiple="false" :last="user.profile_form.federation_card" @update_image="Changefederation_card" id_input="inp-1" label="کارت فدراسیون *"></UploadFile>
                 </div>
 
               </div>
@@ -324,7 +400,11 @@
 
 
           <div v-if="bt1">
-            <UploadFile :multiple="true"   v-if="!user.user_profile.loading"  :last="user.profile_form.referee_docs"  id_input="inp-4"  @update_image="Changereferee_docs"  ></UploadFile>
+            <UploadFile :multiple="true"   v-if="!user.RefereeProfile.loading"  :last="user.RefereeProfile.docs"  id_input="inp-4"  @update_image="Changereferee_docs"  ></UploadFile>
+            <button type="button" @click="user.SaveRefereeProfile()" :class="{'opacity-20': user.RefereeProfile.loading}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 mt-5 w-full focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+              ذخیره سازی مدارک
+            </button>
+
           </div>
         </div>
 
@@ -346,13 +426,15 @@
 
           </div>
 
-          <div class="grid gap-6 mb-6 md:grid-cols-1" v-if="bt2">
+          <div class="grid gap-6 md:grid-cols-1" v-if="bt2">
 
             <div>
-              <UploadFile :multiple="true" v-if="!user.user_profile.loading"  :last="user.profile_form.coaching_docs"  id_input="inp-3"  @update_image="Changecoaching_docs"  ></UploadFile>
+              <UploadFile :multiple="true" v-if="!user.user_profile.loading"  :last="user.CoachProfile.docs"  id_input="inp-3"  @update_image="Changecoaching_docs"  ></UploadFile>
             </div>
 
-
+            <button type="button" @click="user.SaveCoachProfile()" :class="{'opacity-20': user.CoachProfile.loading}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+             ذخیره سازی مدارک
+            </button>
 
           </div>
 
@@ -366,13 +448,15 @@
 <script>
 import {useAuthStore} from "~/store/auth";
 import UploadFile from "../../../components/UploadFile";
-
+import Multiselect from '@vueform/multiselect'
+import '@vueform/multiselect/themes/default.css'
 export default {
-  components: {UploadFile},
+  components: {UploadFile,Multiselect},
   data: () => ({
     bt1: false,
     bt2: false,
     select_type: [],
+    coachSelect: [],
   }),
   setup(){
     const user = useAuthStore()
@@ -395,19 +479,13 @@ export default {
       },
       deep: true,
     },
-    "user.profile_form.coaching_docs" : {
+    "coachSelect" : {
       async handler(){
-        if(this.user.profile_form.coaching_docs.length){
-          this.bt2 = true
+        this.user.AthleteProfile.coach = []
+        for (let i = 0; i < this.coachSelect.length; i++) {
+          this.user.AthleteProfile.coach.push(this.coachSelect[i].id)
         }
-      },
-      deep: true,
-    },
-    "user.profile_form.referee_docs" : {
-      async handler(){
-        if(this.user.profile_form.referee_docs.length){
-          this.bt1 = true
-        }
+
       },
       deep: true,
     },
@@ -419,13 +497,30 @@ export default {
     },
   },
   async mounted() {
-    const [profile,city,coach,filed,sport_club] = await Promise.all([
+    const [coach_profile,Referee,Athlete,profile,city,coach,filed,sport_club] = await Promise.all([
+         await this.user.getCoachProfile(),
+         await this.user.getRefereeProfile(),
+         await this.user.getAthleteProfile(),
          await this.user.getCity(),
          await this.user.getCoach(),
          await this.user.getSportFiled(),
          await this.user.getSportClub(),
          await this.user.getProfile(),
      ]);
+
+    if(this.user.CoachProfile.docs.length){
+      this.select_type.push('coach')
+      this.bt2 = true
+    }
+    if(this.user.RefereeProfile.docs.length){
+      this.select_type.push('ref')
+      this.bt1 = true
+    }
+    if(this.user.AthleteProfile.coach.length){
+      this.select_type.push('user')
+      this.coachSelect = this.user.coach.filter((item) => this.user.AthleteProfile.coach.includes(item.id))
+      console.log(this.coachSelect)
+    }
   },
   methods:{
     Changefederation_card(value){
@@ -449,18 +544,18 @@ export default {
     Changecoaching_docs(value){
       let file = (value.length ? value : false)
       if(file){
-        this.user.profile_form.coaching_docs = file
+        this.user.CoachProfile.docs = file
       }else{
-        this.user.profile_form.coaching_docs = null
+        this.user.CoachProfile.docs = null
       }
 
     },
     Changereferee_docs(value){
       let file = (value.length ? value : false)
       if(file){
-        this.user.profile_form.referee_docs = file
+        this.user.RefereeProfile.docs = file
       }else{
-        this.user.profile_form.referee_docs = null
+        this.user.RefereeProfile.docs = null
       }
 
     },
