@@ -9,7 +9,7 @@
           </nuxt-link>
         </li>
 
-        <li>
+        <li v-if="auth.user_profile.is_association_member">
           <nuxt-link href="/panel/association_athletes" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
             <svg class="svg-icon" style="width: 24px;height: 24px;" viewBox="0 0 20 20">
               <path style="fill: #9ca3af !important;"  d="M10.001,9.658c-2.567,0-4.66-2.089-4.66-4.659c0-2.567,2.092-4.657,4.66-4.657s4.657,2.09,4.657,4.657

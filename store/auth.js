@@ -187,6 +187,7 @@ export  const useAuthStore = defineStore('auth', {
                 })
 
                 this.profile_form = data
+                this.user_profile = data
                 this.user_profile.loading = false
             } catch (e) {
                 if(e.response._data){
@@ -494,6 +495,9 @@ export  const useAuthStore = defineStore('auth', {
             }
         },
         async getAssociation() {
+            if(!this.user_profile.is_association_member){
+                return;
+            }
             const { $error_log } = useNuxtApp()
 
             const toast = useToast()
