@@ -6,7 +6,7 @@
 
           <div class="flex justify-between mb-5">
             <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
-              اعضای هیات
+             ورزشکاران هیات
             </h5>
 
           </div>
@@ -61,14 +61,56 @@
         <div  class="w-full  mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
           <div class="flex justify-between mb-5">
             <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
-              ایجاد هیات ورزشی
+              ویرایش هیات ورزشی
             </h5>
 
           </div>
           <div :class="{'opacity-20' : user.association_form.loading}">
-            <div>
+            <div class="text-white mb-3" >
+              <label class="ml-2">رئیس هیات :</label>
+              <span class="font-extrabold" v-if="user.association_form.owner">{{user.association_form.owner.first_name}} {{user.association_form.owner.last_name}}</span>
+            </div>
+            <div class="flex items-center mb-4">
+              <input id="default-checkbox" v-model="user.association_form.telephone_number_check" type="checkbox" :value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="default-checkbox" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">دارای خط تلفن میباشد؟</label>
+            </div>
+
+            <div class="mb-3" v-if="user.association_form.telephone_number_check">
+              <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شماره تلفن</label>
+              <input type="tel" v-model="user.association_form.telephone_number" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required="">
+            </div>
+
+
+            <div class="flex items-center mb-4">
+              <input id="default-checkbox-2" v-model="user.association_form.fax_number_check"  type="checkbox" :value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="default-checkbox-2" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">دارای فکس میباشد؟</label>
+            </div>
+            <div class="mb-3" v-if="user.association_form.fax_number_check">
+              <label for="fax" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شماره فکس</label>
+              <input type="tel" v-model="user.association_form.fax_number" id="fax" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required="">
+            </div>
+
+
+            <div class="flex items-center mb-4">
+              <input id="default-checkbox-3"  v-model="user.association_form.computer_count_check"  type="checkbox" :value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="default-checkbox-2" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">دارای کامپیوتر میباشد؟</label>
+            </div>
+            <div class="mb-3" v-if="user.association_form.computer_count_check">
+              <label for="computer_count" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">تعداد کامپیوتر</label>
+              <input type="number" v-model="user.association_form.computer_count" id="computer_count" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="تعداد کامپیوتر" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required="">
+            </div>
+
+
+
+            <div class="flex items-center mb-4">
+              <input id="default-checkbox-4" v-model="user.association_form.have_office_human_personnel" type="checkbox" :value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="default-checkbox-4" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">دارای نیروی انسانی دفتری میباشد؟</label>
+            </div>
+
+
+            <div class="mb-4">
               <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شهر</label>
-              <select id="city"  v-model="user.association_form.city"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select v-if="user.association_form.city" id="city"  v-model="user.association_form.city.id"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="">انتخاب کنید</option>
                 <option v-for="item in user.city" :value="item.id">{{ item.name }}</option>
               </select>

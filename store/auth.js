@@ -512,6 +512,18 @@ export  const useAuthStore = defineStore('auth', {
 
                 this.association_form = (data.length ? data[data.length - 1] : {city: ''} )
                 if(this.association_form.id) {
+
+                    if(this.association_form.telephone_number){
+                        this.association_form.telephone_number_check = true
+                    }
+                    if(this.association_form.fax_number){
+                        this.association_form.fax_number_check = true
+                    }
+                    if(this.association_form.computer_count){
+                        this.association_form.computer_count_check = true
+                    }
+                      
+
                     this.getAssociationAthletes(this.association_form.id)
                 }
                 this.association_form.loading = false
