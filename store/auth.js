@@ -28,6 +28,8 @@ export  const useAuthStore = defineStore('auth', {
         CoachProfile: {docs: []},
         RefereeProfile: {docs: []},
         AthleteProfile: {coach: []},
+        AthleteUsers: {},
+        AthleteMemberForm: {},
     }),
     getters: {
         logined: (state) => state.login,
@@ -111,6 +113,13 @@ export  const useAuthStore = defineStore('auth', {
                 }
                 this.form.loading = false
             }
+        },
+        async AddAthlMember() {
+           return await useApiFetch(`/user/association_profile/`, {
+                    method: "POST",
+                    body: this.AthleteMemberForm,
+                })
+
         },
         async SendRegister() {
             const { $error_log } = useNuxtApp()
@@ -266,8 +275,6 @@ export  const useAuthStore = defineStore('auth', {
                 this.CoachProfile.loading = false
             }
         },
-
-
         async getRefereeProfile() {
             const { $error_log } = useNuxtApp()
 
@@ -327,7 +334,6 @@ export  const useAuthStore = defineStore('auth', {
                 this.RefereeProfile.loading = false
             }
         },
-
         async SaveAthleteProfile(){
             const { $error_log } = useNuxtApp()
 
@@ -369,6 +375,44 @@ export  const useAuthStore = defineStore('auth', {
                 this.AthleteProfile.loading = false
             }
         },
+        async getAthleteUsers(at_id) {
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.AthleteUsers.loading = true
+
+            let url =  `/user/association/${at_id}/members/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "GET",
+                })
+
+                this.AthleteUsers = data
+                this.AthleteUsers.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.AthleteUsers.loading = false
+            }
+        },
+        async DeleteAthletePMember(id) {
+            const { $error_log } = useNuxtApp()
+            const toast = useToast()
+            let url =  `/user/association_profile/${id}/delete_member/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "DELETE",
+                })
+                toast.success('آیتم با موفقیت حذف شد!')
+                await this.getAthleteUsers(this.association_form.id)
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+            }
+        },
+
         async getCity() {
             const { $error_log } = useNuxtApp()
 
@@ -512,7 +556,7 @@ export  const useAuthStore = defineStore('auth', {
 
                 this.association_form = (data.length ? data[data.length - 1] : {city: ''} )
                 if(this.association_form.id) {
-
+                    this.getAthleteUsers(this.association_form.id)
                     if(this.association_form.telephone_number){
                         this.association_form.telephone_number_check = true
                     }

@@ -5,7 +5,7 @@
     <UserHeader />
     <UserSide  />
 
-    <div class="sm:p-4 sm:pt-4 mt-14  pt-10 p-4 sm:mr-64" >
+    <div class="sm:p-4 sm:pt-10 mt-14  pt-10 p-4 sm:mr-64 " >
       <div dir="rtl">
         <slot />
       </div>
