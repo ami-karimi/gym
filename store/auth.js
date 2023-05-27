@@ -30,6 +30,7 @@ export  const useAuthStore = defineStore('auth', {
         AthleteProfile: {coach: []},
         AthleteUsers: {},
         AthleteMemberForm: {},
+        SuperassociationList: [],
     }),
     getters: {
         logined: (state) => state.login,
@@ -412,7 +413,6 @@ export  const useAuthStore = defineStore('auth', {
                 }
             }
         },
-
         async getCity() {
             const { $error_log } = useNuxtApp()
 
@@ -538,8 +538,8 @@ export  const useAuthStore = defineStore('auth', {
                 this.SportClubAthletes.loading = false
             }
         },
-        async getAssociation() {
-            if(!this.user_profile.is_association_member){
+        async getAssociation(id = false) {
+            if(!this.user_profile.is_association_member && !id){
                 return;
             }
             const { $error_log } = useNuxtApp()
@@ -548,13 +548,14 @@ export  const useAuthStore = defineStore('auth', {
             this.association_form.loading = true
             const router = useRouter()
 
-            let url =  `/user/association/`
+            let url =  (!id ? `/user/association/` : `/user/association/${id}`)
             try {
                 const data = await useApiFetch(url, {
                     method: "GET",
                 })
 
-                this.association_form = (data.length ? data[data.length - 1] : {city: ''} )
+
+                this.association_form = (!id ? (data.length ? data[data.length - 1] : {city: ''} ) : data)
                 if(this.association_form.id) {
                     this.getAthleteUsers(this.association_form.id)
                     if(this.association_form.telephone_number){
@@ -601,6 +602,28 @@ export  const useAuthStore = defineStore('auth', {
                     toast.error($error_log(e.response._data))
                 }
                 this.associationAthletes.loading = false
+            }
+
+        },
+        async getAllAssociation(){
+            const { $error_log } = useNuxtApp()
+            const toast = useToast()
+            this.SuperassociationList.loading = true
+            const router = useRouter()
+
+            let url =  `/user/association/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "GET",
+                })
+
+                this.SuperassociationList = data
+                this.SuperassociationList.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.SuperassociationList.loading = false
             }
 
         },
