@@ -3,7 +3,7 @@
     <div class="sm:h-[250px] h-[450px] mt-6">
       <div class="row">
 
-        <div class="col-md-4 col-xs-6">
+        <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
           <div @click="SelectedType('user')" :class="`border p-5 ${select_type.includes('user') ? 'bg-gray-700' : ''} text-center hover:bg-gray-700 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600`">
             <div v-if="select_type.includes('user')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
@@ -68,7 +68,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-4 col-xs-6">
+        <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
           <div @click="SelectedType('coach')" :class="`border ${select_type.includes('coach') ? 'bg-gray-700' : ''} p-5 text-center relative  hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg  border-gray-600`">
             <div v-if="select_type.includes('coach')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
@@ -124,7 +124,7 @@
 
           </div>
         </div>
-        <div class="col-md-4 col-xs-12 mt-3 sm:mt-0">
+        <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
           <div  @click="SelectedType('ref')" :class="`border  ${select_type.includes('ref') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
             <div v-if="select_type.includes('ref')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
@@ -155,7 +155,27 @@
                 <span class="text-xs sm:text-sm">  بارگذاری مدارک</span>
               </li>
             </ul>
-
+             
+          </div>
+        </div>
+         <div class="col-md-3 col-xs-6 mb-2 sn:mb-0" >
+          <div  @click="SelectedType('more') " :class="`border  ${select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
+            <div v-if="select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach')" class="bg-green-500 absolute rounded top-2 left-2">
+              <span class="text-sm px-2 py-1">انتخاب شده</span>
+            </div>
+            <div class="icon-p flex mb-3 justify-center">
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 47.999" width="62" height="62">
+                <path fill="#ff5722" d="M29,28c0,1.656-1.343,3-3,3H13c-1.657,0-3-1.344-3-3V8c0-1.656,1.343-3,3-3h13c1.657,0,3,1.344,3,3V28z" />
+                <path fill="#ffb74d" d="M37.844,31.324l-3.795-8.65c-0.471-1.314-1.158-2.445-2.445-2.963c-0.496-0.185-1.404-0.576-2.604-1.021V28c0,1.656-1.343,3-3,3h-5.003L19,22.021c-0.313-1.654-1.094-3.246-3.688-2.996c-0.97,0.099-2.595,1.029-2.22,3.435L15,35.008C16,41,20.343,43,22,43h11l4.586-9.617C38.018,32.813,38.111,31.922,37.844,31.324z" />
+                <path fill="#e69329" d="M31,31l-1-5c-0.161-0.708-0.491-1.33-1-1.685V28c0,1.656-1.343,3-3,3h-5.005l0.224,1c0.656,2.5,2.563,1.949,2.563,1.949L29,33C30.344,32.75,31.188,32.125,31,31z" />
+                <path fill="#ffcdd2" d="M17.938,21.708c0.158,1.094-3.802,1.663-3.959,0.571c-0.158-1.094,0.602-2.107,1.694-2.266C16.768,19.857,17.781,20.615,17.938,21.708z" />
+              </svg> -->
+            </div>
+            <strong> سایر</strong>
+            <ul v-if="select_type.includes('more')"   class="w-[200px] mx-auto mt-3">
+                
+            </ul>
+             
           </div>
         </div>
       </div>
@@ -163,7 +183,8 @@
     </div>
 
 
-    <div class="row ">
+    <div class="row "  v-if="select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach')" >
+
       <div class="col-md-12" >
         <div  class="w-full  mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
           <div :class="{'opacity-20' : user.profile_form.loading || user.user_profile.loading}" class="flex justify-between mb-5">
@@ -174,7 +195,7 @@
           </div>
 
           <div  :class="{'opacity-20' : user.profile_form.loading || user.user_profile.loading}" class="grid gap-6 mb-6 md:grid-cols-1">
-            <div class="row ">
+            <div class="row " >
               <div class="col-md-12  mb-3">
                 <div class="flex items-center justify-start">
                   <img class="w-20 h-20 rounded-full" :src="typeof user.profile_form.profile_image === 'string' ? (user.profile_form.profile_image ? user.profile_form.profile_image : '/img/no-pic.png') : ConvertImage(user.profile_form.profile_image)" alt="user photo">
@@ -265,7 +286,7 @@
                       <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شهر</label>
                       <select id="city"  v-model="user.profile_form.city"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">انتخاب کنید</option>
-                        <option v-for="item in user.city" :value="item.id">{{ item.name }}</option>
+                        <option v-for="item in user.city" :key="item.id" :value="item.id">{{ item.name }}</option>
                       </select>
                     </div>
                   </div>
@@ -447,7 +468,7 @@
 </template>
 <script>
 import {useAuthStore} from "~/store/auth";
-import UploadFile from "../../../components/UploadFile";
+import UploadFile from "~/components/UploadFile";
 import Multiselect from '@vueform/multiselect'
 import '@vueform/multiselect/themes/default.css'
 export default {
@@ -455,10 +476,13 @@ export default {
   data: () => ({
     bt1: false,
     bt2: false,
-    select_type: [],
+    select_type: [], 
     coachSelect: [],
+    tagVisible : false 
+   
   }),
   setup(){
+
     const user = useAuthStore()
     useHead({
       title: 'ویرایش پروفایل',
@@ -519,7 +543,7 @@ export default {
     if(this.user.AthleteProfile.coach.length){
       this.select_type.push('user')
       this.coachSelect = this.user.coach.filter((item) => this.user.AthleteProfile.coach.includes(item.id))
-      console.log(this.coachSelect)
+  
     }
   },
   methods:{
