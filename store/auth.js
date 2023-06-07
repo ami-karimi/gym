@@ -35,6 +35,14 @@ export  const useAuthStore = defineStore('auth', {
         filterUser: {},
         userList: [],
         pro_id: false,
+        admin_association_form: {
+            city: "",
+        },
+        sport_field: [],
+        sub_sport_field: [],
+        sub_sport_field_form: {
+            parent: "",
+        },
     }),
     getters: {
         logined: (state) => state.login,
@@ -42,6 +50,75 @@ export  const useAuthStore = defineStore('auth', {
         getType: (state) => state.token_type,
     },
     actions: {
+        async SaveSubSportField(){
+            const { $error_log } = useNuxtApp()
+
+            if(this.sub_sport_field_form.loading){
+                return;
+            }
+            const toast = useToast()
+
+            if(!this.sub_sport_field_form.parent){
+                return toast.error('لطفا رشته اصلی را انتخاب نمایید!')
+            }
+
+            if(!this.sub_sport_field_form.first_name){
+                return toast.error('لطفا نام صاحب سبک را وارد نمایید!')
+            }
+            if(!this.sub_sport_field_form.last_name){
+                return toast.error('لطفا  نام خانوادگی صاحب سبک را وارد نمایید!')
+            }
+            if(!this.sub_sport_field_form.national_code){
+                return toast.error('لطفا کد ملی صاحب سبک را وارد نمایید!')
+            }
+
+            this.sub_sport_field_form.loading = true
+            let url = (this.sub_sport_field_form.id ? `/user/sub_sports_field/${this.sub_sport_field_form.id}/` : `/user/sub_sports_field/` )
+            try {
+                const data = await useApiFetch(url, {
+                    method: (this.sub_sport_field_form.id  ? "PUT" : "POST"),
+                    body: this.sub_sport_field_form
+                })
+                if(this.sub_sport_field_form.id){
+                    toast.success('سبک ورزرشی با موفقیت ویرایش شد!')
+                }else{
+                    toast.success('سبک ورزشی با موفقیت ایجاد شد!')
+
+                }
+                await this.getSportField()
+                this.sub_sport_field_form.loading = false
+
+            } catch (e) {
+                this.sub_sport_field_form.loading = false
+
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+
+            }
+        },
+        async getSportField() {
+            const { $error_log } = useNuxtApp()
+
+            const toast = useToast()
+            this.sport_field.loading = true
+            let url_m = `/user/sports_field`
+
+            try {
+                const data = await useApiFetch(url_m, {
+                    method: "GET",
+                })
+
+                this.sport_field = data
+                this.sport_field.loading = false
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.sport_field.loading = false
+            }
+        },
+
         CheckToken() {
             if (this.user_token) {
                 return this.user_token
@@ -750,6 +827,14 @@ export  const useAuthStore = defineStore('auth', {
                     formData.append('insurance_card', this.profile_form.insurance_card, this.profile_form.insurance_card.name)
 
             }
+            if(!this.profile_form.national_card && !this.pro_id) {
+                toast.error('لطفا تصویر کارت ملی خود را بارگذاری نمایید!')
+                return;
+            }
+            if (this.profile_form.national_card instanceof Object) {
+                    formData.append('national_card', this.profile_form.national_card, this.profile_form.national_card.name)
+
+            }
 
             if (this.profile_form.coaching_docs instanceof Object) {
                 if(this.profile_form.coaching_docs.length) {
@@ -859,13 +944,13 @@ export  const useAuthStore = defineStore('auth', {
                 toast.success('اطلاعات شما با موفقیت ذخیره شد!')
 
                 if(type === 'admin'){
-                    await this.user.getSportClubAdmin()
+                    await this.getSportClubAdmin()
                 }
 
                 this.sport_club_form.loading = false
 
             } catch (e) {
-                if(e.response._data){
+                if(e.response){
                     toast.error($error_log(e.response._data))
                 }
                 this.sport_club_form.loading = false
@@ -873,6 +958,51 @@ export  const useAuthStore = defineStore('auth', {
 
 
         },
+        async SaveAssociationAdmin(){
+            const { $error_log } = useNuxtApp()
+
+            if(this.admin_association_form.loading){
+                return;
+            }
+            const toast = useToast()
+
+            if(!this.admin_association_form.city){
+                return toast.error('لطفا شهر هیات را انتخاب نمایید!')
+            }
+            if(!this.admin_association_form.address){
+                return toast.error('لطفا آدرس هیات را انتخاب نمایید!')
+            }
+            if(!this.admin_association_form.first_name){
+                return toast.error('لطفا نام رئیس هیات را وارد نمایید!')
+            }
+            if(!this.admin_association_form.last_name){
+                return toast.error('لطفا  نام خانوادگی رئیس هیات را وارد نمایید!')
+            }
+            if(!this.admin_association_form.national_code){
+                return toast.error('لطفا کد ملی رئیس هیات را وارد نمایید!')
+            }
+
+            this.admin_association_form.loading = true
+            let url = `/user/association/`
+            try {
+                const data = await useApiFetch(url, {
+                    method: "POST",
+                    body: this.admin_association_form
+                })
+                this.admin_association_form = {
+                    city: ""
+                }
+                toast.success('هیات ورزشی با موفقیت ایجاد شد!')
+                await this.getAllAssociation()
+            } catch (e) {
+                if(e.response._data){
+                    toast.error($error_log(e.response._data))
+                }
+                this.admin_association_form.loading = false
+
+            }
+        },
+
         async SaveAssociation(){
             const { $error_log } = useNuxtApp()
 
@@ -882,10 +1012,10 @@ export  const useAuthStore = defineStore('auth', {
             const toast = useToast()
 
             if(!this.association_form.city){
-               return toast.error('لطفا شهر اتحادیه را انتخاب نمایید!')
+               return toast.error('لطفا شهر هیات را انتخاب نمایید!')
             }
             if(!this.association_form.address){
-               return toast.error('لطفا آدرس اتحادیه را انتخاب نمایید!')
+               return toast.error('لطفا آدرس هیات را انتخاب نمایید!')
             }
             this.association_form.loading = true
             let url = (!this.association_form.id ? `/user/association/` : `/user/association/${this.association_form.id}/` )
@@ -894,7 +1024,7 @@ export  const useAuthStore = defineStore('auth', {
                     method: !this.association_form.id ? "POST" : "PUT",
                     body: this.association_form
                 })
-                 toast.success('اطلاعات اتحادیه با موفقیت بروزرسانی شد!')
+                 toast.success('اطلاعات هیات با موفقیت بروزرسانی شد!')
                 this.association_form.id = data.id
                 this.association_form.loading = false
 

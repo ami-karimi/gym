@@ -71,7 +71,7 @@ export  default  {
   ,watch:{
     'auth.form.sms_token':{
       handler(){
-          if(this.auth.form.sms_token.length >= 5 ){
+          if(this.auth.form.sms_token.length >= 6 ){
             this.auth.SendLogin()
             this.auth.form.disabled = true
           }

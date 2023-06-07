@@ -290,6 +290,12 @@
                       </select>
                     </div>
                   </div>
+
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <UploadFile :multiple="false" :last="user.profile_form.national_card" @update_image="ChangeNational_card" id_input="inp-4" label="تصویر کارت ملی *"></UploadFile>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6 ">
@@ -580,6 +586,15 @@ export default {
         this.user.RefereeProfile.docs = file
       }else{
         this.user.RefereeProfile.docs = null
+      }
+
+    },
+    ChangeNational_card(value){
+      let file = (value.length ? value[0] : false)
+      if(file){
+        this.user.profile_form.national_card = file
+      }else{
+        this.user.profile_form.national_card = null
       }
 
     },
