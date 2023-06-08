@@ -1,6 +1,6 @@
 <template>
   <nav class="bg-white border-gray-200 dark:bg-gray-700 fixed top-0 w-full z-45" style="z-index: 21">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between  p-4 w-full">
 
       <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <span class="sr-only">Open sidebar</span>
@@ -9,10 +9,11 @@
         </svg>
       </button>
 
-      <a href="#" class="flex items-center">
-        <span class="self-center sm:text-2xl text-sm font-semibold whitespace-nowrap dark:text-white">باشگاه فرهنگی و ورزشی</span>
+      <a href="#" class="flex items-center justify-start">
+        <span class="self-center sm:text-2xl text-sm font-semibold whitespace-nowrap dark:text-white">هیات انجمن های ورزش های </span>
+        <small  class="text-white mr-2">رزمی استان مازندران</small>
       </a>
-      <div class="flex items-center md:order-2">
+      <div class="flex items-center  justify-end md:order-2">
 
 
         <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">

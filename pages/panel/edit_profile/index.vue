@@ -427,10 +427,89 @@
 
 
           <div v-if="bt1">
-            <UploadFile :multiple="true"   v-if="!user.RefereeProfile.loading"  :last="user.RefereeProfile.docs"  id_input="inp-4"  @update_image="Changereferee_docs"  ></UploadFile>
-            <button type="button" @click="user.SaveRefereeProfile()" :class="{'opacity-20': user.RefereeProfile.loading}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 mt-5 w-full focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-              ذخیره سازی مدارک
-            </button>
+            <div class="rounded-lg border border-gray-700  p-5 relative">
+              <label class="  absolute -top-2 bg-white text-gray-700 rounded-lg px-3 right-5 text-sm">بارگذاری مدارک</label>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="level"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">سطح</label>
+                  <select v-model="user.refProfileForm.level" id="level_2"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">انتخاب کنید</option>
+                    <option v-for="item in level2" :value="item.value">{{ item.display_name }}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="level"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته</label>
+                  <Select2 v-model="user.refProfileForm.field" style="width: 100%;"  :options="user.subTreeData" placeholder="رشته را انتخاب کنید..." />
+                </div>
+                <div class="col-md-4">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="ref_file">پیوست</label>
+                  <input  @change="ChangeUpRef($event)" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="ref_file" type="file">
+                </div>
+
+                <div class="col-md-12">
+
+                  <button type="button" @click="user.SaveRefereeProfile" class="mt-8  w-full focus:outline-none w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+
+               <span v-if="user.refProfileForm.loading">
+                  <svg aria-hidden="true" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                  </svg>
+                  صبر نمایید...
+                  </span>
+                    <span v-else>
+             بارگذرای مدرک
+                </span>
+
+                  </button>
+
+
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="relative overflow-x-auto  ">
+              <label class="text-white mb-3 block text-sm">مدارک بارگذاری شده :</label>
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-center">
+                    سطح
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-center">
+                    رشته
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-center">
+                    پیوست
+                  </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in user.RefereeProfile.docs"  :key="item.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th scope="row" class="px-6 text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ item.level }}
+                  </th>
+                  <td class="px-6 text-center py-4">
+                    {{item.field}}
+                  </td>
+                  <td class="px-6 text-center py-4">
+                    <a target="_blank" class="text-blue-400" :href="item.file">
+                      جهت مشاهده کلیک کنید
+                    </a>
+                  </td>
+
+                </tr>
+                </tbody>
+              </table>
+
+
+
+            </div>
+
 
           </div>
         </div>
@@ -454,14 +533,89 @@
           </div>
 
           <div class="grid gap-6 md:grid-cols-1" v-if="bt2">
+            <div class="rounded-lg border border-gray-700  p-5 relative">
+              <label class="  absolute -top-2 bg-white text-gray-700 rounded-lg px-3 right-5 text-sm">بارگذاری مدارک</label>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="level"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">سطح</label>
+                  <select v-model="user.coachProfileForm.level" id="level"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">انتخاب کنید</option>
+                    <option v-for="item in levels" :value="item.value">{{ item.display_name }}</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="level"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته</label>
+                  <Select2 v-model="user.coachProfileForm.field" style="width: 100%;"  :options="user.subTreeData" placeholder="رشته را انتخاب کنید..." />
+                </div>
+                <div class="col-md-4">
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="coach_file">پیوست</label>
+                  <input  @change="ChangeUpCoach($event)" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="coach_file" type="file">
+                </div>
 
-            <div>
-              <UploadFile :multiple="true" v-if="!user.user_profile.loading"  :last="user.CoachProfile.docs"  id_input="inp-3"  @update_image="Changecoaching_docs"  ></UploadFile>
+                <div class="col-md-12">
+
+                  <button type="button" @click="user.SaveCoachProfile" class="mt-8  w-full focus:outline-none w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+
+               <span v-if="user.coachProfileForm.loading">
+                  <svg aria-hidden="true" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                  </svg>
+                  صبر نمایید...
+                  </span>
+                    <span v-else>
+             بارگذرای مدرک
+                </span>
+
+                  </button>
+
+
+                </div>
+              </div>
+
             </div>
 
-            <button type="button" @click="user.SaveCoachProfile()" :class="{'opacity-20': user.CoachProfile.loading}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-             ذخیره سازی مدارک
-            </button>
+
+
+            <div class="relative overflow-x-auto  ">
+              <label class="text-white mb-3 block text-sm">مدارک بارگذاری شده :</label>
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-center">
+                    سطح
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-center">
+                    رشته
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-center">
+                    پیوست
+                  </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="item in user.CoachProfile.docs"  :key="item.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {{ item.level }}
+                    </th>
+                    <td class="px-6 text-center py-4">
+                      {{item.field}}
+                    </td>
+                    <td class="px-6 text-center py-4">
+                      <a target="_blank" class="text-blue-400" :href="item.file">
+                        جهت مشاهده کلیک کنید
+                      </a>
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+
+
+
+            </div>
+
 
           </div>
 
@@ -484,7 +638,19 @@ export default {
     bt2: false,
     select_type: [], 
     coachSelect: [],
-    tagVisible : false 
+    tagVisible : false,
+    levels: [
+      { "value": "1", "display_name": "سطح ۱" }
+      , { "value": "2", "display_name": "سطح ۲" }
+      , { "value": "3", "display_name": "سطح ۳" }
+      , { "value": "4", "display_name": "ملی" }
+    ],
+    level2: [
+      { "value": "1", "display_name": "سطح ۱" },
+      { "value": "2", "display_name": "سطح ۲" },
+      { "value": "3", "display_name": "سطح ۳" },
+      { "value": "4", "display_name": "بین المللی" }
+    ],
    
   }),
   setup(){
@@ -535,8 +701,10 @@ export default {
          await this.user.getCoach(),
          await this.user.getSportFiled(),
          await this.user.getSportClub(),
-         await this.user.getProfile(),
-     ]);
+      await this.user.getProfile(),
+
+    ]);
+    await this.user.GetSportFiledSelect()
 
     if(this.user.CoachProfile.docs.length){
       this.select_type.push('coach')
@@ -553,6 +721,20 @@ export default {
     }
   },
   methods:{
+    ChangeUpCoach(e){
+      if(e.target.files.length){
+        this.user.coachProfileForm.docs = e.target.files[0]
+      }else{
+        this.user.coachProfileForm.docs = null
+      }
+    },
+    ChangeUpRef(e){
+      if(e.target.files.length){
+        this.user.refProfileForm.docs = e.target.files[0]
+      }else{
+        this.user.refProfileForm.docs = null
+      }
+    },
     Changefederation_card(value){
       let file = (value.length ? value[0] : false)
       if(file){

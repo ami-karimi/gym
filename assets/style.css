@@ -803,3 +803,22 @@ body {
 .transform-none {
     transform: none !important;
 }
+.select2-container {
+    width: 100% !important;
+}
+.select2-container--default .select2-selection--single {
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity)) !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity)) !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: white !important;
+
+}
+.select2-container--default[dir="rtl"] .select2-selection--single .select2-selection__arrow {
+    top: 20% !important;
+}
