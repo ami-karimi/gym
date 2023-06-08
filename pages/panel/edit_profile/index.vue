@@ -494,7 +494,7 @@
                     {{ item.level }}
                   </th>
                   <td class="px-6 text-center py-4">
-                    {{item.field}}
+                    {{item.field.name}}
                   </td>
                   <td class="px-6 text-center py-4">
                     <a target="_blank" class="text-blue-400" :href="item.file">
@@ -600,7 +600,7 @@
                       {{ item.level }}
                     </th>
                     <td class="px-6 text-center py-4">
-                      {{item.field}}
+                      {{item.field.name}}
                     </td>
                     <td class="px-6 text-center py-4">
                       <a target="_blank" class="text-blue-400" :href="item.file">
