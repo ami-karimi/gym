@@ -11,27 +11,32 @@
 
 
 
-     <div class="flex justify-start items-center mb-5 ">
-       <label class="text-white block ml-4">
-         فیلتر ها:
-       </label>
-       <div class="flex items-center ml-3">
-         <input id="default-checkbox" type="checkbox" v-model="user.filterUser.is_athlete" :value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-         <label for="default-checkbox" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">ورزشکاران</label>
-       </div>
-       <div class="flex items-center ml-3">
-         <input  id="checked-checkbox" type="checkbox" v-model="user.filterUser.is_coach" :value="true"  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-         <label for="checked-checkbox" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">مربی ها</label>
-       </div>
-       <div class="flex items-center ml-3">
-         <input  id="checked-checkbox-4" type="checkbox"  v-model="user.filterUser.is_referee" :value="true" value=""  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-         <label for="checked-checkbox-4" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">داوران</label>
-       </div>
-       <div class="flex items-center ml-3">
-         <input  id="checked-checkbox-5" type="checkbox"  v-model="user.filterUser.is_association_member" :value="true" value=""  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-         <label for="checked-checkbox-5" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">رئیس هیات</label>
-       </div>
-
+     <div class="flex items-center mb-5 " style="justify-content: space-between;">
+     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"> فیلترها <svg class="w-4 h-4 mr-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+      <!-- Dropdown menu -->
+     <div id="dropdown" class="z-10 hidden p-4 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+         <ul class="p-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+           <li class="mb-3">
+            <input id="default-checkbox" type="checkbox" v-model="user.filterUser.is_athlete" :value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+           <label for="default-checkbox" class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">ورزشکاران</label>
+           </li>
+          <li class="mb-3">
+             <input  id="checked-checkbox" type="checkbox" v-model="user.filterUser.is_coach" :value="true"  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="checked-checkbox" class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">مربی ها</label>
+           </li>
+           <li class="mb-3">
+             <input  id="checked-checkbox-4" type="checkbox"  v-model="user.filterUser.is_referee" :value="true" value=""  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+             <label for="checked-checkbox-4" class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">داوران</label>
+           </li>
+           <li class="mb-3">
+             <input  id="checked-checkbox-5" type="checkbox"  v-model="user.filterUser.is_association_member" :value="true" value=""  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+             <label for="checked-checkbox-5" class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">رئیس هیات</label>
+           </li>
+         </ul>
+     </div>
+       
+      <button  @click="search = !search"  class="left-100 bg-blue-700 p-2 text-white ring-4  rounded-lg">سرچ</button>
+       
      </div>
 
 
@@ -146,6 +151,7 @@ export default {
   data: () => ({
     modal: null,
     deleteId: null,
+    search: false
   }),
   setup(){
     const user = useAuthStore()

@@ -9,16 +9,12 @@
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
             <div class="icon-p flex mb-3 justify-center ">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="68" height="68">
-                <path fill="#EDE7F6" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z" />
-                <path fill="#673AB7" d="M24,44c4.5,0,8.6-1.5,11.9-4c-0.6-7.6-8.2-9-8.2-9L24,31.8L20.3,31c0,0-7.6,1.4-8.2,9C15.4,42.5,19.5,44,24,44z" />
-                <path fill="#311B92" d="M24,37c3.1,0,5.6-2.3,5.9-5.3c-0.9-0.4-1.6-0.6-2-0.7c0,2.2-1.8,3.9-4,3.9c-2.2,0-4-1.8-4-3.9c-0.4,0.1-1.1,0.3-2,0.7C18.4,34.7,20.9,37,24,37z" />
-                <path fill="#FFA726" d="M32,22.5c0,0.8-0.7,1.5-1.5,1.5c-0.8,0-1.5-0.7-1.5-1.5s0.7-1.5,1.5-1.5C31.3,21,32,21.7,32,22.5 M19,22.5c0-0.8-0.7-1.5-1.5-1.5S16,21.7,16,22.5s0.7,1.5,1.5,1.5S19,23.3,19,22.5" />
-                <path fill="#FF9800" d="M24,35c-4,0-4-4-4-4v-4h8v4C28,31,28,35,24,35z" />
-                <path fill="#FFB74D" d="M31,18.7c0-5.9-14-3.8-14,0v4.4c0,3.8,3.1,6.9,7,6.9c3.9,0,7-3.1,7-6.9V18.7z" />
-                <path fill="#424242" d="M24,11c-4.9,0-8,4.3-8,8.2V21l2,2v-4l9.2-3l2.8,3v4l2-2v-0.8c0-3.2-0.8-6.8-4.8-7.6L26.4,11H24z" />
-                <path fill="#784719" d="M26,22c0-0.6,0.4-1,1-1s1,0.4,1,1s-0.4,1-1,1S26,22.6,26,22 M20,22c0,0.6,0.4,1,1,1s1-0.4,1-1s-0.4-1-1-1S20,21.4,20,22" />
-              </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="62" height="62">
+  <path fill="#ffba57" d="M14,4c2.209,0,4,1.791,4,4s-1.791,4-4,4c-2.209,0-4-1.791-4-4S11.791,4,14,4" />
+  <path fill="#d2ccc9" d="M41,14c0-1.105-0.895-2-2-2c-0.535,0-1.019,0.213-1.378,0.556l-12.343,7.651l-2.951-4.426c-0.098-0.147-0.217-0.271-0.33-0.401l9.204-5.555c0.731-0.387,1.011-1.295,0.623-2.027c-0.387-0.731-1.297-1.011-2.027-0.623l-17,9c-0.251,0.133-0.459,0.334-0.601,0.581l-4,7c-0.367,0.642-0.211,1.454,0.365,1.915l5,4C13.839,29.892,14.17,30,14.499,30c0.44,0,0.876-0.192,1.172-0.563c0.518-0.647,0.413-1.591-0.234-2.108l-3.998-3.199l3.951-4.443c0.084,0.18,0.168,0.361,0.282,0.532L20,26.54V42c0,1.105,0.895,2,2,2s2-0.895,2-2l2-16l13.926-10.237C40.562,15.428,41,14.769,41,14z" />
+  <path fill="#d2ccc9" d="M26 26L24 42 24 27z" />
+  <path fill="#606fc4" d="M15.333,19.729l4.662,6.804c2.831-1.941,4.608-4.674,5.413-6.132L22,15.333C22,15.333,18.787,17.358,15.333,19.729z" />
+</svg>
             </div>
             <strong >حساب ورزشکار</strong>
             <ul v-if="select_type.includes('user')"  class="w-[200px] ml-auto sm:mx-auto mt-3">
@@ -74,7 +70,7 @@
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
             <div class="icon-p flex mb-3 justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="68" height="68">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="62" height="62">
                 <path fill="#757575" d="M45,42.286c0,0-1.75-4.286-7-4.286s-7,4.286-7,4.286V44h14V42.286z" />
                 <path fill="#2196f3" d="M18,18.27l-0.34,4.61v0.05L16.11,44h-7.4L7.76,31.31L5,29.5v-7.63c0-2.24,1.06-4.22,2.75-5.47 c0.05-0.04,0.09-0.07,0.14-0.11H7.9c0.27-0.19,0.57-0.37,0.87-0.52c0.24-0.12,0.49-0.23,0.75-0.33c0.06-0.02,0.12-0.04,0.19-0.06 c0.72-0.24,1.5-0.38,2.31-0.38c0.82,0,1.55,0.15,2.19,0.38c0.12,0.03,0.22,0.08,0.33,0.12c0.26,0.1,0.5,0.22,0.73,0.34 c0.17,0.09,0.32,0.18,0.47,0.27c0.1,0.06,0.19,0.13,0.28,0.19c0.03,0.02,0.06,0.04,0.09,0.06c0.06,0.04,0.11,0.08,0.16,0.12 c0.01,0,0.02,0,0.02,0.02h0.01c0.06,0.04,0.12,0.08,0.17,0.14l0.18,0.15h0.01c0.09,0.07,0.17,0.15,0.25,0.22l0.41,0.41 c0.06,0.07,0.12,0.13,0.17,0.19l0.02,0.02C17.83,18,18,18.27,18,18.27z" />
                 <path fill="#ffb74d" d="M12,13c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S14.206,13,12,13L12,13z" />
@@ -164,12 +160,10 @@
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
             <div class="icon-p flex mb-3 justify-center">
-              <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 47.999" width="62" height="62">
-                <path fill="#ff5722" d="M29,28c0,1.656-1.343,3-3,3H13c-1.657,0-3-1.344-3-3V8c0-1.656,1.343-3,3-3h13c1.657,0,3,1.344,3,3V28z" />
-                <path fill="#ffb74d" d="M37.844,31.324l-3.795-8.65c-0.471-1.314-1.158-2.445-2.445-2.963c-0.496-0.185-1.404-0.576-2.604-1.021V28c0,1.656-1.343,3-3,3h-5.003L19,22.021c-0.313-1.654-1.094-3.246-3.688-2.996c-0.97,0.099-2.595,1.029-2.22,3.435L15,35.008C16,41,20.343,43,22,43h11l4.586-9.617C38.018,32.813,38.111,31.922,37.844,31.324z" />
-                <path fill="#e69329" d="M31,31l-1-5c-0.161-0.708-0.491-1.33-1-1.685V28c0,1.656-1.343,3-3,3h-5.005l0.224,1c0.656,2.5,2.563,1.949,2.563,1.949L29,33C30.344,32.75,31.188,32.125,31,31z" />
-                <path fill="#ffcdd2" d="M17.938,21.708c0.158,1.094-3.802,1.663-3.959,0.571c-0.158-1.094,0.602-2.107,1.694-2.266C16.768,19.857,17.781,20.615,17.938,21.708z" />
-              </svg> -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="62" height="62">
+                <path fill="#FFB74D" d="M33,14c0,5-4,9-9,9c-5,0-9-4-9-9s4-9,9-9C29,5,33,9,33,14" />
+                <path fill="#607D8B" d="M42,36.1c0,0-5-10.1-18-10.1C11,26,6,36.1,6,36.1V42h36V36.1z" />
+                </svg>
             </div>
             <strong> سایر</strong>
             <ul v-if="select_type.includes('more')"   class="w-[200px] mx-auto mt-3">
@@ -188,6 +182,7 @@
       <div class="col-md-12" >
         <div  class="w-full  mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
           <div :class="{'opacity-20' : user.profile_form.loading || user.user_profile.loading}" class="flex justify-between mb-5">
+           <br>
             <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
               تکمیل پروفایل کاربری
             </h5>
@@ -197,10 +192,11 @@
           <div  :class="{'opacity-20' : user.profile_form.loading || user.user_profile.loading}" class="grid gap-6 mb-6 md:grid-cols-1">
             <div class="row " >
               <div class="col-md-12  mb-3">
-                <div class="flex items-center justify-start">
-                  <img class="w-20 h-20 rounded-full" :src="typeof user.profile_form.profile_image === 'string' ? (user.profile_form.profile_image ? user.profile_form.profile_image : '/img/no-pic.png') : ConvertImage(user.profile_form.profile_image)" alt="user photo">
-                  <label for="upload_profile" type="button" class="text-white relative inline-block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                    بارگذاری تصویر
+                <div class="  items-center justify-start">
+                  <img class="w-20 h-20 rounded-full mr-10" :src="typeof user.profile_form.profile_image === 'string' ? (user.profile_form.profile_image ? user.profile_form.profile_image : '/img/no-pic.png') : ConvertImage(user.profile_form.profile_image)" alt="user photo">
+                  
+                  <label for="upload_profile" type="button" class=" mt-5 text-white relative inline-block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                       بارگذاری تصویر 3*4
                     <input id="upload_profile" v-on:change="UploadProfile($event)" class="opacity-0 absolute" type="file">
                   </label>
 

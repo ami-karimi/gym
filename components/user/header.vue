@@ -10,8 +10,8 @@
       </button>
 
       <a href="#" class="flex items-center justify-start">
-        <span class="self-center sm:text-2xl text-sm font-semibold whitespace-nowrap dark:text-white">هیات انجمن های ورزش های </span>
-        <small  class="text-white mr-2">رزمی استان مازندران</small>
+        <span class="hidden md:flex xl:block lg:flex sm:text-2xl text-sm font-semibold whitespace-nowrap dark:text-white"> هیات انجمن های ورزش های رزمی استان مازندران</span>
+          <span class=" block lg:hidden text-sm font-semibold whitespace-nowrap dark:text-white">  انجمن های ورزش های رزمی مازندران</span>
       </a>
       <div class="flex items-center  justify-end md:order-2">
 

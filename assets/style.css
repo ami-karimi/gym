@@ -752,9 +752,7 @@ body {
 .pull-left {
     float: left !important;
 }
-.hide {
-    display: none !important;
-}
+
 .show {
     display: block !important;
 }
@@ -768,9 +766,7 @@ body {
     background-color: transparent;
     border: 0;
 }
-.hidden {
-    display: none !important;
-}
+
 .affix {
     position: fixed;
 }
