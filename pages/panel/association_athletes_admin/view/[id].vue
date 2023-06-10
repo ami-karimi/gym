@@ -61,7 +61,9 @@
                   <span v-if="item.position === 'TC'">کمیته فنی</span>
                 </td>
                 <td class="text-center">
-                  <label v-if="item.position !== 'CM'" @click="DeleteMember(item)" class="text-red-700"> حذف</label>
+                  <label v-if="item.position !== 'CM'" @click="DeleteMember(item)" class="cursor-pointer ml-2 text-red-700"> حذف</label>
+                  <label @click="EditUs(item)" class="cursor-pointer text-blue-700"> ویرایش </label>
+
                 </td>
 
               </tr>
@@ -281,6 +283,52 @@
         </div>
       </div>
     </div>
+    <div id="edit_modal"  tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-[350px] max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal header -->
+          <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+              بروزرسانی نقش عضو هیات
+            </h3>
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 mr-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="edit_modal.hide()">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="px-5 py-5">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">سمت</label>
+                <select v-model="user.AthleteMemberForm.position" id="role_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option value=""> انتخاب کنید</option>
+                  <option value="CM">رئیس هیات</option>
+                  <option value="VC">نائب هیات</option>
+                  <option value="MOB">عضو هیات رئیسه</option>
+                  <option value="ST">دبیر</option>
+                  <option value="TS">خزانه دار</option>
+                  <option value="RC">کمیته داورن</option>
+                  <option value="CC">کمیته مربیان</option>
+                  <option value="IC">کمیته بازرسی</option>
+                  <option value="PRC">کمیته روابط عمومی</option>
+                  <option value="PC">کمیته همگانی</option>
+                  <option value="CTC">کمیته مسابقات</option>
+                  <option value="TSC">کمیته استعدادیابی</option>
+                  <option value="TC">کمیته فنی</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="flex items-center justify-between p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button @click="edit_modal.hide()" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">خروج</button>
+            <button @click="CreateMemberSend" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">بروزرسانی</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
 
   </nuxt-layout>
@@ -309,6 +357,7 @@ export  default {
   },
   data: () => ({
     modal: null,
+    edit_modal: null,
     id: "",
   }),
   async mounted() {
@@ -318,6 +367,8 @@ export  default {
 
     const $targetElQr = document.getElementById('modal');
     this.modal = new Modal($targetElQr,{});
+    const $targetEledit_modal = document.getElementById('edit_modal');
+    this.edit_modal = new Modal($targetEledit_modal,{});
 
     const [profile,city,Association,SportClub] = await Promise.all([
       await this.user.getProfile(),
@@ -329,6 +380,11 @@ export  default {
   },
 
   methods:{
+    EditUs(item){
+      this.user.AthleteMemberForm.id = item.id
+      this.user.AthleteMemberForm.position = item.position
+      this.edit_modal.show()
+    },
     ChangeLicense(value){
       let file = (value.length ? value[0] : false)
       if(file){
@@ -355,8 +411,14 @@ export  default {
       try {
         await  this.user.AddAthlMember()
         await this.user.getAthleteUsers(this.user.association_form.id)
-        this.toast.success('عضو جدید با موفقیت ایجاد شد!')
+        if(!this.user.AthleteMemberForm.id) {
+          this.toast.success('عضو جدید با موفقیت ایجاد شد!')
+        }else{
+          this.toast.success('عضو هیات با موفقیت بروزرسانی شد!')
+
+        }
         this.modal.hide()
+        this.edit_modal.hide()
 
       }catch (e){
         if(e.response._data){

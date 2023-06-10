@@ -51,27 +51,44 @@
                     <div class="col-md-12">
                       <div class="mb-3" >
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام سبک</label>
-                        <input type="text" v-model="user.sub_sport_field_form.name"  id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]" placeholder="کد ملی صاحب سبک" required="">
+                        <input type="text" v-model="user.sub_sport_field_form.name"  id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]" placeholder="نام سبک را بنویسید...." required="">
                       </div>
                     </div>
 
-                    <div class="col-md-6">
-                      <div class="mb-3" >
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام </label>
-                        <input v-model="user.sub_sport_field_form.first_name" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام صاحب سبک" required="">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3" >
-                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام خانوادگی </label>
-                        <input v-model="user.sub_sport_field_form.last_name"  type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام خانوادگی صاحب سبک" required="">
-                      </div>
+                    <div class="col-md-12 mb-3" v-if="!user.sub_sport_field_form.select_custom">
+                      <label   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">انتخاب از کاربران </label>
+                      <Select2 v-model="user.sub_sport_field_form.national_code" style="width: 100%;"  :options="user.userList.map(item => ({text: (item.first_name ? item.first_name+' '+item.last_name : item.national_code),id: item.national_code}))" placeholder="صاحب سبک" />
                     </div>
 
                     <div class="col-md-12">
-                      <div class="mb-3" >
-                        <label for="national_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی </label>
-                        <input type="text" v-model="user.sub_sport_field_form.national_code"  id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]" placeholder="کد ملی صاحب سبک" required="">
+                      <div class="flex items-center mb-4">
+                        <input id="default-checkbox" v-model="user.sub_sport_field_form.select_custom" type="checkbox" :value="true" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox" class="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">ایا میخواهید اطلاعات کاربر را دستی وارد نمایید؟</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12" v-if="user.sub_sport_field_form.select_custom">
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="mb-3" >
+                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام </label>
+                            <input v-model="user.sub_sport_field_form.first_name" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام صاحب سبک" required="">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="mb-3" >
+                            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام خانوادگی </label>
+                            <input v-model="user.sub_sport_field_form.last_name"  type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام خانوادگی صاحب سبک" required="">
+                          </div>
+                        </div>
+                        <div class="col-md-12" >
+                          <div class="mb-3" >
+                            <label for="national_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی </label>
+                            <input type="text" v-model="user.sub_sport_field_form.national_code"  id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]" placeholder="کد ملی صاحب سبک" required="">
+                          </div>
+                        </div>
+
                       </div>
                     </div>
 
@@ -87,6 +104,9 @@
 
                     <div class="col-md-12">
                       <div class="flex justify-end mt-4">
+                        <button @click="CanceleEdit()"  type="button" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800 ml-2"  v-if="user.sub_sport_field_form.id">
+                          انصراف
+                        </button>
                         <button @click="user.SaveSubSportField()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             <span v-if="user.sub_sport_field_form.loading">
                  <svg aria-hidden="true" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -132,15 +152,17 @@ export default {
   },
   data: () => ({
     parent_name : "",
+    loading: true,
   }),
   async mounted() {
-
+    this.loading = true
     const [profile,SportField,users] = await Promise.all([
       await this.user.getProfile(),
       await this.user.getSportField(),
       await this.user.getUsersList()
 
     ])
+    this.loading = false
 
   },
   methods:{
@@ -160,10 +182,18 @@ export default {
     },
     EditSub(item){
       let owner = this.getOwnerData(item.owner)
-      this.user.sub_sport_field_form = item
+      this.user.sub_sport_field_form.id = item.id
       this.user.sub_sport_field_form.first_name = owner.first_name
+      this.user.sub_sport_field_form.name = item.name
       this.user.sub_sport_field_form.last_name = owner.last_name
       this.user.sub_sport_field_form.national_code = owner.national_code
+    },
+    CanceleEdit(){
+      this.user.sub_sport_field_form.id = false
+      this.user.sub_sport_field_form.first_name = ""
+      this.user.sub_sport_field_form.last_name = ""
+      this.user.sub_sport_field_form.national_code = ""
+      this.user.sub_sport_field_form.name = ""
     },
     SelectSub(item){
       this.parent_name = item.name

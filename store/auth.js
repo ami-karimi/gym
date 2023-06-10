@@ -85,10 +85,10 @@ export  const useAuthStore = defineStore('auth', {
                 return toast.error('لطفا رشته اصلی را انتخاب نمایید!')
             }
 
-            if(!this.sub_sport_field_form.first_name){
+            if(!this.sub_sport_field_form.first_name && this.sub_sport_field_form.select_custom){
                 return toast.error('لطفا نام صاحب سبک را وارد نمایید!')
             }
-            if(!this.sub_sport_field_form.last_name){
+            if(!this.sub_sport_field_form.last_name && this.sub_sport_field_form.select_custom){
                 return toast.error('لطفا  نام خانوادگی صاحب سبک را وارد نمایید!')
             }
             if(!this.sub_sport_field_form.national_code){
@@ -220,8 +220,9 @@ export  const useAuthStore = defineStore('auth', {
             }
         },
         async AddAthlMember() {
-           return await useApiFetch(`/user/association_profile/`, {
-                    method: "POST",
+            let url = (this.AthleteMemberForm.id ? `/user/association_profile/${this.AthleteMemberForm.id}/` : `/user/association_profile/`  )
+           return await useApiFetch(url, {
+                    method: (this.AthleteMemberForm.id ? "PATCH" : "POST"),
                     body: this.AthleteMemberForm,
                 })
 
@@ -700,7 +701,9 @@ export  const useAuthStore = defineStore('auth', {
 
                 this.association_form = (!id ? (data.length ? data[data.length - 1] : {city: ''} ) : data)
                 if(this.association_form.id) {
+
                     this.getAthleteUsers(this.association_form.id)
+
                     if(this.association_form.telephone_number){
                         this.association_form.telephone_number_check = true
                     }
@@ -1053,6 +1056,9 @@ export  const useAuthStore = defineStore('auth', {
             }
             if(!this.association_form.address){
                return toast.error('لطفا آدرس هیات را انتخاب نمایید!')
+            }
+            if(this.association_form.city.id){
+                this.association_form.city = this.association_form.city.id
             }
             this.association_form.loading = true
             let url = (!this.association_form.id ? `/user/association/` : `/user/association/${this.association_form.id}/` )

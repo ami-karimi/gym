@@ -35,10 +35,58 @@
          </ul>
      </div>
        
-      <button  @click="search = !search"  class="left-100 bg-blue-700 p-2 text-white ring-4  rounded-lg">سرچ</button>
+      <button  @click="search = !search"  class="left-100 bg-blue-700 p-2 text-white ring-4  rounded-lg">
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+          <path d="M9 2C5.1458514 2 2 5.1458514 2 9C2 12.854149 5.1458514 16 9 16C10.747998 16 12.345009 15.348024 13.574219 14.28125L14 14.707031L14 16L20 22L22 20L16 14L14.707031 14L14.28125 13.574219C15.348024 12.345009 16 10.747998 16 9C16 5.1458514 12.854149 2 9 2 z M 9 4C11.773268 4 14 6.2267316 14 9C14 11.773268 11.773268 14 9 14C6.2267316 14 4 11.773268 4 9C4 6.2267316 6.2267316 4 9 4 z" fill="white" />
+        </svg>
+      </button>
        
      </div>
 
+      <div v-if="search" class="border mb-5 mt-3 p-5 rounded-lg relative border-gray-700">
+        <label class="absolute -top-3 right-3 bg-white rounded px-3 text-sm">فیلتر پیشرفته</label>
+        <div class="row items-center justify-start">
+           <div class="col-md-3 mb-3">
+               <label for="fields"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته</label>
+               <Select2 v-model="user.filterUser.field" style="width: 100%;"  id="fields" :options="user.subTreeData" placeholder="رشته را انتخاب کنید..." />
+           </div>
+          <div class="col-md-2 mb-3">
+               <label for="national_code"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی</label>
+              <input type="text" v-model="user.filterUser.national_code" id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="کد ملی" required>
+          </div>
+          <div class="col-md-3 mb-3">
+               <label for="phone_number"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> شماره تماس </label>
+              <input type="text" v-model="user.filterUser.phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="شماره تماس" required>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">جنسیت</label>
+            <select id="gender"  v-model="user.filterUser.gender"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="">انتخاب کنید</option>
+              <option value="FEMALE">زن</option>
+              <option value="MALE">مرد</option>
+            </select>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="date_joined_choice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">عضویت در</label>
+            <select id="date_joined_choice"  v-model="user.filterUser.date_joined_choice"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="">انتخاب کنید</option>
+              <option value="today">امروز</option>
+              <option value="yesterday">دیروز</option>
+              <option value="week">7 روز پیش</option>
+              <option value="month">این ماه</option>
+              <option value="year">امسال</option>
+            </select>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">شهر</label>
+            <select id="city"  v-model="user.filterUser.city"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="">انتخاب کنید</option>
+              <option v-for="item in user.city" :key="item.id" :value="item.id">{{ item.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
       <div class="relative overflow-x-auto  ">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -49,6 +97,15 @@
             </th>
             <th scope="col" class="px-6 py-3 text-center">
               نام و نام خانوادگی
+            </th>
+            <th scope="col" class="px-6 py-3 text-center">
+             کد ملی
+            </th>
+            <th scope="col" class="px-6 py-3 text-center">
+             رشته ورزشی
+            </th>
+            <th scope="col" class="px-6 py-3 text-center">
+             شماره تماس
             </th>
 
             <th scope="col" class="px-6 py-3 text-center">
@@ -66,6 +123,20 @@
             </th>
             <td class="px-6 text-center py-4">
               {{item.first_name}} {{item.last_name}}
+            </td>
+            <td class="px-6 text-center py-4">
+              {{item.national_code}}
+            </td>
+            <td class="px-6 text-center py-4">
+             <span v-if="item.field">
+                {{item.field_name}}
+             </span>
+              <span v-else >
+                ----
+              </span>
+            </td>
+           <td class="px-6 text-center py-4">
+              {{item.phone_number}}
             </td>
 
             <td class="px-6 text-center py-4">
@@ -176,7 +247,12 @@ export default {
   },
   async mounted() {
     await this.user.getProfile()
+    await this.user.getCity()
     await this.user.getUsersList()
+    await this.user.getSportFiled()
+
+    await this.user.GetSportFiledSelect()
+
     const $targetElQr = document.getElementById('action-modal');
     this.modal = new Modal($targetElQr,{});
   },
