@@ -36,10 +36,7 @@
      </div>
        
       <button  @click="search = !search"  class="left-100 bg-blue-700 p-2 text-white ring-4  rounded-lg">
-
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-          <path d="M9 2C5.1458514 2 2 5.1458514 2 9C2 12.854149 5.1458514 16 9 16C10.747998 16 12.345009 15.348024 13.574219 14.28125L14 14.707031L14 16L20 22L22 20L16 14L14.707031 14L14.28125 13.574219C15.348024 12.345009 16 10.747998 16 9C16 5.1458514 12.854149 2 9 2 z M 9 4C11.773268 4 14 6.2267316 14 9C14 11.773268 11.773268 14 9 14C6.2267316 14 4 11.773268 4 9C4 6.2267316 6.2267316 4 9 4 z" fill="white" />
-        </svg>
+              سرچ پیشرفته
       </button>
        
      </div>
@@ -51,8 +48,17 @@
                <label for="fields"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته</label>
                <Select2 v-model="user.filterUser.field" style="width: 100%;"  id="fields" :options="user.subTreeData" placeholder="رشته را انتخاب کنید..." />
            </div>
+
           <div class="col-md-2 mb-3">
-               <label for="national_code"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی</label>
+               <label for="national_code"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> نام</label>
+              <input type="text" v-model="user.filterUser.first_name" id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام" required>
+          </div>
+          <div class="col-md-2 mb-3">
+               <label for="national_code"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام خانوادگی </label>
+              <input type="text" v-model="user.filterUser.last_name" id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام خانوادگی" required>
+          </div>
+           <div class="col-md-2 mb-3">
+              <label for="national_code"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی</label>
               <input type="text" v-model="user.filterUser.national_code" id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="کد ملی" required>
           </div>
           <div class="col-md-3 mb-3">
@@ -74,8 +80,7 @@
               <option value="today">امروز</option>
               <option value="yesterday">دیروز</option>
               <option value="week">7 روز پیش</option>
-              <option value="month">این ماه</option>
-              <option value="year">امسال</option>
+           
             </select>
           </div>
           <div class="col-md-2 mb-3">
@@ -240,6 +245,7 @@ export default {
     'user.filterUser':{
       async handler(){
         await this.user.getUsersList()
+       
       },
       deep: true,
       immediate: true,

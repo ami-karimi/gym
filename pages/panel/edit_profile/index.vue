@@ -182,7 +182,7 @@
       <div class="col-md-12" >
         <div  class="w-full  mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
           <div :class="{'opacity-20' : user.profile_form.loading || user.user_profile.loading}" class="flex justify-between mb-5">
-           <br>
+          
             <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
               تکمیل پروفایل کاربری
             </h5>
@@ -243,12 +243,14 @@
                   </div>
                   <div class="col-md-6  mb-3">
                     <div>
+
                       <label for="birth_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  تاریخ تولد</label>
                       <input type="text" v-model="user.profile_form.birth_date" id="birth_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1378-10-12" required>
-                      <date-picker
+                      <date-picker 
+                          locale="fa"
                           v-model="user.profile_form.birth_date"
                           type="date"
-                          format="YYYY-MM-DD"
+                          format="jYYYY-jMM-jDD"
                           display-format="jYYYY-jMM-jDD"
                           :element="`birth_date`"
                       />
@@ -625,8 +627,9 @@
 <script>
 import {useAuthStore} from "~/store/auth";
 import UploadFile from "~/components/UploadFile";
-import Multiselect from '@vueform/multiselect'
-import '@vueform/multiselect/themes/default.css'
+import Multiselect from '@vueform/multiselect';
+import '@vueform/multiselect/themes/default.css';
+
 export default {
   components: {UploadFile,Multiselect},
   data: () => ({
@@ -650,7 +653,7 @@ export default {
    
   }),
   setup(){
-
+    
     const user = useAuthStore()
     useHead({
       title: 'ویرایش پروفایل',
