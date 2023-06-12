@@ -5,12 +5,18 @@
         <div  class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
 
           <div class="flex justify-between mb-5">
-            <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
-             رشته های ورزشی
-            </h5>
+              
+                <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
+                    رشته های ورزشی   
+                </h5>
+          
+           
+              <button  v-if="view" @click="view = !view"  class="left-100 bg-blue-700 p-2 text-white ring-4  rounded-lg">
+               بازگشت
+              </button>
 
           </div>
-          <div class="relative ">
+          <div v-if="view == false" class="relative ">
             <label class="text-sm text-white mb-4 block">لطفا جهت مشاهده زیر رشته، رشته اصلی را انتخاب نمایید</label>
             <div class="flex  justify-start min-h-[200px]  w-full">
               <ul class="min-w-[150px] list-none">
@@ -34,15 +40,11 @@
                     </div>
                    <div class="action flex items-center">
                      
-                     <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="22" height="22">
-                       <path d="M28 6C25.791 6 24 7.791 24 10L24 12L23.599609 12L10 14L10 17L54 17L54 14L40.400391 12L40 12L40 10C40 7.791 38.209 6 36 6L28 6 z M 28 10L36 10L36 12L28 12L28 10 z M 12 19L14.701172 52.322266C14.869172 54.399266 16.605453 56 18.689453 56L45.3125 56C47.3965 56 49.129828 54.401219 49.298828 52.324219L51.923828 20L12 19 z M 20 26C21.105 26 22 26.895 22 28L22 51L19 51L18 28C18 26.895 18.895 26 20 26 z M 32 26C33.657 26 35 27.343 35 29L35 51L29 51L29 29C29 27.343 30.343 26 32 26 z M 44 26C45.105 26 46 26.895 46 28L45 51L42 51L42 28C42 26.895 42.895 26 44 26 z" fill="#a6a6a6" />
-                     </svg>
-                     -->
-                      <!-- <span @click="EditSub(item)" class="text-xs mr-3 text-blue-400 cursor-pointer">ویرایش</span> -->
-              
-                     <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="22" height="22">
+                     
+                     <svg  @click="view = !view" class="ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="22" height="22">
                          <path d="M25 12C11.667969 12 1.25 24.34375 1.25 24.34375C0.921875 24.71875 0.921875 25.28125 1.25 25.65625C1.25 25.65625 11.667969 38 25 38C38.332031 38 48.75 25.65625 48.75 25.65625C49.078125 25.28125 49.078125 24.71875 48.75 24.34375C48.75 24.34375 38.332031 12 25 12 Z M 25 14C27.628906 14 30.140625 14.542969 32.46875 15.375C34.03125 17.140625 35 19.449219 35 22C35 27.535156 30.535156 32 25 32C19.464844 32 15 27.535156 15 22C15 19.449219 15.9375 17.140625 17.5 15.375C19.835938 14.539063 22.363281 14 25 14 Z M 14.1875 16.84375C13.4375 18.40625 13 20.15625 13 22C13 28.617188 18.382813 34 25 34C31.617188 34 37 28.617188 37 22C37 20.164063 36.582031 18.40625 35.84375 16.84375C41.492188 19.714844 45.554688 23.878906 46.59375 25C44.96875 26.757813 35.972656 36 25 36C14.027344 36 5.03125 26.757813 3.40625 25C4.445313 23.875 8.527344 19.714844 14.1875 16.84375 Z M 25 17C22.238281 17 20 19.238281 20 22C20 24.761719 22.238281 27 25 27C27.761719 27 30 24.761719 30 22C30 19.238281 27.761719 17 25 17Z" fill="#2390ef" />
                      </svg>
+                  
                      <svg  @click="EditSub(item)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="22" height="22">
                         <path d="M4 0L4 48L21 48 A 1.0001 1.0001 0 1 0 21 46L6 46L6 2L24 2L24 16L38 16L38 27 A 1.0001 1.0001 0 1 0 40 27L40 14.585938L25.414062 0L4 0 z M 26 3.4140625L36.585938 14L26 14L26 3.4140625 z M 11 19L11 21L33 21L33 19L11 19 z M 45.900391 24.900391C44.850391 24.900391 43.8 25.299609 43 26.099609L42.300781 26.800781L42.34375 26.84375L26.892578 42.292969 A 1.0001 1.0001 0 0 0 26.638672 42.726562L24.9375 48.726562 A 1.0001 1.0001 0 0 0 26.158203 49.966797L32.158203 48.367188 A 1.0001 1.0001 0 0 0 32.605469 48.109375L48.404297 32.410156 A 1.0001 1.0001 0 0 0 48.638672 32.060547L48.800781 31.900391C50.400781 30.300391 50.400781 27.699609 48.800781 26.099609C48.000781 25.299609 46.950391 24.900391 45.900391 24.900391 z M 11 25L11 27L33 27L33 25L11 25 z M 43.757812 28.257812L46.742188 31.242188L31.384766 46.501953L28.457031 43.640625L28.490234 43.523438L43.757812 28.257812 z M 11 31L11 33L33 33L33 31L11 31 z M 11 37L11 39L24 39L24 37L11 37 z" fill="#2390ef" />
                      </svg>
@@ -138,6 +140,53 @@
               </div>
             </div>
           </div>
+            <div v-if="view"  class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+
+          <div class="flex justify-between mb-5">
+            <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
+            ورزشکاران هر سبک
+            </h5>
+
+          </div>
+          <div class="relative overflow-x-auto  ">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-center">
+                  شناسه
+                </th>
+                <th scope="col" class="px-6 py-3 text-center">
+                 سبک
+                </th>
+                <th scope="col" class="px-6 py-3 text-center">
+                نام و نام خانوادگی 
+                </th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr  v-for="item in user.sub_sport_field" :key="item.id"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{item.id}}
+                </th>
+                <td class="px-6 text-center py-4">
+                   {{item.name}}
+                </td>
+                <td class="px-6 text-center py-4">
+                 
+                  {{getOwnerName(item.owner)}}
+                </td>
+
+              </tr>
+
+              </tbody>
+            </table>
+
+
+
+          </div>
+
+        </div>
 
         </div>
 
@@ -177,7 +226,7 @@ export default {
 
   },
   methods:{
-  
+    
     getOwnerName(id){
       let index = this.user.userList.findIndex(item => item.id == id)
       if(index !== -1){

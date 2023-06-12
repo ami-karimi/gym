@@ -2,7 +2,7 @@
   <div class="login-page flex justify-center items-center" dir="rtl">
     <section class="max-w-[400px]  w-full">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <a href="#" class="flex items-center mb-6 text-xl text-center font-semibold text-white dark:text-white">
+        <a href="#" class="flex items-center mb-6 text-xl text-center font-semibold text-blak dark:text-black">
            هیات انجمن های ورزش های رزمی استان مازندران
         </a>
         <div :class="{'opacity-20' : auth.form.disabled }" class=" w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
