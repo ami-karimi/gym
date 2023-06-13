@@ -183,8 +183,8 @@ export  default {
   }),
   async mounted() {
 
-    const [profile,All,city,Association,SportClub] = await Promise.all([
-      await this.user.getProfile(),
+    const [All,city,Association,SportClub] = await Promise.all([
+      
       await this.user.getAllAssociation(),
       await this.user.getCity(),
       await this.user.getAssociation(),

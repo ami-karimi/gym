@@ -145,8 +145,11 @@ export  const useAuthStore = defineStore('auth', {
             }
         },
 
-        CheckToken() {
+        CheckToken(type = "page") {
             if (this.user_token) {
+                if(type === 'midd'){
+                this.getProfile()
+                }
                 return this.user_token
             }
             let cookie = useCookie('AUTH_TOKEN');
@@ -155,6 +158,9 @@ export  const useAuthStore = defineStore('auth', {
                 if (type.value) {
                     this.token_type = type.value
                     this.user_token = cookie.value
+                    if(type === 'midd'){
+                      this.getProfile()
+                    }
                     return cookie.value;
                 }
             }

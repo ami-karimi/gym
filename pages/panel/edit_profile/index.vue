@@ -653,7 +653,9 @@ export default {
    
   }),
   setup(){
-    
+       definePageMeta({
+        middleware: ["auth"]
+      })  
     const user = useAuthStore()
     useHead({
       title: 'ویرایش پروفایل',
@@ -692,7 +694,7 @@ export default {
     },
   },
   async mounted() {
-    const [coach_profile,Referee,Athlete,profile,city,coach,filed,sport_club] = await Promise.all([
+    const [coach_profile,Referee,Athlete,city,coach,filed,sport_club] = await Promise.all([
          await this.user.getCoachProfile(),
          await this.user.getRefereeProfile(),
          await this.user.getAthleteProfile(),
@@ -700,7 +702,7 @@ export default {
          await this.user.getCoach(),
          await this.user.getSportFiled(),
          await this.user.getSportClub(),
-      await this.user.getProfile(),
+    
 
     ]);
     await this.user.GetSportFiledSelect()

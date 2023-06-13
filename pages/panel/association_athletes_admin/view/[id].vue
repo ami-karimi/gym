@@ -370,8 +370,8 @@ export  default {
     const $targetEledit_modal = document.getElementById('edit_modal');
     this.edit_modal = new Modal($targetEledit_modal,{});
 
-    const [profile,city,Association,SportClub] = await Promise.all([
-      await this.user.getProfile(),
+    const [city,Association,SportClub] = await Promise.all([
+  
       await this.user.getCity(),
       await this.user.getAssociation(this.id),
       await this.user.getSportClub(),

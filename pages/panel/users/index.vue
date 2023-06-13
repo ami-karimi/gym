@@ -252,7 +252,7 @@ export default {
     }
   },
   async mounted() {
-    await this.user.getProfile()
+  
     await this.user.getCity()
     await this.user.getUsersList()
     await this.user.getSportFiled()

@@ -47,7 +47,11 @@ export default {
 
   }),
   setup(){
+      definePageMeta({
+        middleware: ["auth"]
+      })  
     const user = useAuthStore()
+    
     useHead({
       title: 'ویرایش پروفایل',
     })
@@ -57,7 +61,7 @@ export default {
     }
   },
   async mounted() {
-   await this.user.getProfile()
+
   },
   methods: {}
 }

@@ -313,7 +313,7 @@ export  default {
     this.modal = new Modal($targetElQr,{});
 
     const [profile,city,Association,SportClub] = await Promise.all([
-      await this.user.getProfile(),
+    
       await this.user.getCity(),
       await this.user.getAssociation(),
       await this.user.getSportClub(),

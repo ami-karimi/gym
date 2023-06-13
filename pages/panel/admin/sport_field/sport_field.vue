@@ -218,8 +218,8 @@ export default {
   }),
   async mounted() {
     this.loading = true
-    const [profile,SportField,users] = await Promise.all([
-      await this.user.getProfile(),
+    const [SportField,users] = await Promise.all([
+     
       await this.user.getSportField(),
       await this.user.getUsersList()
 

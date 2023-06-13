@@ -236,8 +236,8 @@ export  default {
   async mounted() {
     const $targetElQr = document.getElementById('action-modal');
     this.modal = new Modal($targetElQr,{});
-    const [admin,city,Association,SportClub] = await Promise.all([
-      await this.user.getProfile(),
+    const [city,Association,SportClub] = await Promise.all([
+      
 
       await this.user.getCity(),
       await this.user.getAssociation(),
