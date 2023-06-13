@@ -195,7 +195,7 @@
                 <div class="  items-center justify-start">
                   <img class="w-20 h-20 rounded-full mr-10" :src="typeof user.profile_form.profile_image === 'string' ? (user.profile_form.profile_image ? user.profile_form.profile_image : '/img/no-pic.png') : ConvertImage(user.profile_form.profile_image)" alt="user photo">
 
-                  <label for="upload_profile" type="button" class=" mt-5 text-white relative inline-block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                  <label for="upload_profile" type="button" class=" mt-5 text-white relative inline-block bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
                     بارگذاری تصویر 3*4
                     <input id="upload_profile" v-on:change="UploadProfile($event)" class="opacity-0 absolute" type="file">
                   </label>
@@ -412,7 +412,7 @@
             <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
               تکمیل مدارک به عنوان داور
             </h5>
-            <button type="button" @click="bt1 = !bt1" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <button type="button" @click="bt1 = !bt1" class="text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
 
               {{(bt1 ? 'انصراف' : 'تکمیل مدارک') }}
             </button>
@@ -477,7 +477,7 @@
               تکمیل مدارک به عنوان مربی
             </h5>
 
-            <button type="button" @click="bt2 = !bt2" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <button type="button" @click="bt2 = !bt2" class="text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
 
               {{(bt2 ? 'انصراف' : 'تکمیل مدارک') }}
 

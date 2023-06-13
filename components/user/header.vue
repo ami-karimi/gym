@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white border-gray-200 dark:bg-gray-700 fixed top-0 w-full z-45" style="z-index: 21">
+  <nav class="bg-green-500 border-gray-900 dark:bg-gray-700 fixed top-0 w-full z-45" style="z-index: 21">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between  p-4 w-full">
 
       <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -10,8 +10,8 @@
       </button>
 
       <a href="#" class="flex items-center justify-start">
-        <span class="hidden md:flex xl:block lg:flex sm:text-2xl text-sm font-semibold whitespace-nowrap dark:text-white"> هیات انجمن های ورزش های رزمی استان مازندران</span>
-          <span class=" block lg:hidden text-sm font-semibold whitespace-nowrap dark:text-white">  انجمن های ورزش های رزمی مازندران</span>
+        <span class="text-white hidden md:flex xl:block lg:flex sm:text-2xl text-sm font-semibold whitespace-nowrap dark:text-white"> هیات انجمن های ورزش های رزمی استان مازندران</span>
+          <span class=" text-white block lg:hidden text-sm font-semibold whitespace-nowrap dark:text-white">  انجمن های ورزش های رزمی مازندران</span>
       </a>
       <div class="flex items-center  justify-end md:order-2">
 

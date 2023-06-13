@@ -158,7 +158,7 @@
             <span v-if="user.sport_club_form.id" class="ml-3 cursor-pointer text-white">
              <span @click="canceleEdit"> انصراف</span>
             </span>
-            <button @click="user.SaveSportClub('admin')" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <button @click="user.SaveSportClub('admin')" type="button" class="text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
 
             <span v-if="user.sport_club_form.loading">
                  <svg aria-hidden="true" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

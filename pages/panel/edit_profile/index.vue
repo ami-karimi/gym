@@ -4,7 +4,7 @@
       <div class="row">
 
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div @click="SelectedType('user')" :class="`border p-5 ${select_type.includes('user') ? 'bg-gray-700' : ''} text-center hover:bg-gray-700 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600`">
+          <div @click="SelectedType('user')" :class="` border-gray-400 bg-white shadow-xl p-5 ${select_type.includes('user') ? 'bg-gray-700' : ''} text-center hover:bg-gray-700 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600`">
             <div v-if="select_type.includes('user')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -16,9 +16,9 @@
   <path fill="#606fc4" d="M15.333,19.729l4.662,6.804c2.831-1.941,4.608-4.674,5.413-6.132L22,15.333C22,15.333,18.787,17.358,15.333,19.729z" />
 </svg>
             </div>
-            <strong >حساب ورزشکار</strong>
+            <strong class="text-black" >حساب ورزشکار</strong>
             <ul v-if="select_type.includes('user')"  class="w-[200px] ml-auto sm:mx-auto mt-3">
-              <li class="flex items-center mb-2">
+              <li class="flex items-center mb-2 ">
                 <div class="w-[30px]">
                   <svg v-if="!user.profile_form.gender" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
                     <path fill="#f44336" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div @click="SelectedType('coach')" :class="`border ${select_type.includes('coach') ? 'bg-gray-700' : ''} p-5 text-center relative  hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg  border-gray-600`">
+          <div @click="SelectedType('coach')" :class="` border-gray-400 bg-white shadow-xl ${select_type.includes('coach') ? 'bg-gray-700' : ''} p-5 text-center relative  hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg  border-gray-600`">
             <div v-if="select_type.includes('coach')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -83,7 +83,7 @@
                 <polygon fill="#ffba57" points="14.464,24.792 12.312,22.615 13.389,21.529 15.54,23.704" />
               </svg>
             </div>
-            <strong>حساب مربی</strong>
+            <strong class="text-black">حساب مربی</strong>
             <ul v-if="select_type.includes('coach')"  class="w-[200px] mx-auto mt-3">
               <li class="flex items-center mb-2">
                 <div class="w-[30px]">
@@ -121,7 +121,7 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div  @click="SelectedType('ref')" :class="`border  ${select_type.includes('ref') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
+          <div  @click="SelectedType('ref')" :class="` border-gray-400 bg-white shadow-xl  ${select_type.includes('ref') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
             <div v-if="select_type.includes('ref')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -133,7 +133,7 @@
                 <path fill="#ffcdd2" d="M17.938,21.708c0.158,1.094-3.802,1.663-3.959,0.571c-0.158-1.094,0.602-2.107,1.694-2.266C16.768,19.857,17.781,20.615,17.938,21.708z" />
               </svg>
             </div>
-            <strong>حساب داور</strong>
+            <strong class="text-black">حساب داور</strong>
             <ul v-if="select_type.includes('ref')"  class="w-[200px] mx-auto mt-3">
               <li class="flex items-center mb-2">
                 <div class="w-[30px]">
@@ -155,7 +155,7 @@
           </div>
         </div>
          <div class="col-md-3 col-xs-6 mb-2 sn:mb-0" >
-          <div  @click="SelectedType('more') " :class="`border  ${select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
+          <div  @click="SelectedType('more') " :class="` border-gray-400 bg-white shadow-xl  ${select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
             <div v-if="select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -165,7 +165,7 @@
                 <path fill="#607D8B" d="M42,36.1c0,0-5-10.1-18-10.1C11,26,6,36.1,6,36.1V42h36V36.1z" />
                 </svg>
             </div>
-            <strong> سایر</strong>
+            <strong class="text-black"> سایر</strong>
             <ul v-if="select_type.includes('more')"   class="w-[200px] mx-auto mt-3">
                 
             </ul>
@@ -195,7 +195,7 @@
                 <div class="  items-center justify-start">
                   <img class="w-20 h-20 rounded-full mr-10" :src="typeof user.profile_form.profile_image === 'string' ? (user.profile_form.profile_image ? user.profile_form.profile_image : '/img/no-pic.png') : ConvertImage(user.profile_form.profile_image)" alt="user photo">
                   
-                  <label for="upload_profile" type="button" class=" mt-5 text-white relative inline-block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                  <label for="upload_profile" type="button" class=" mt-5 text-white relative inline-block bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
                        بارگذاری تصویر 3*4
                     <input id="upload_profile" v-on:change="UploadProfile($event)" class="opacity-0 absolute" type="file">
                   </label>
@@ -414,7 +414,7 @@
             <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
               تکمیل مدارک به عنوان داور
             </h5>
-            <button type="button" @click="bt1 = !bt1" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <button type="button" @click="bt1 = !bt1" class="text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
 
               {{(bt1 ? 'انصراف' : 'تکمیل مدارک') }}
             </button>
@@ -522,7 +522,7 @@
               تکمیل مدارک به عنوان مربی
             </h5>
 
-            <button type="button" @click="bt2 = !bt2" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <button type="button" @click="bt2 = !bt2" class="text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
 
               {{(bt2 ? 'انصراف' : 'تکمیل مدارک') }}
 

@@ -12,7 +12,7 @@
         لطفا نسبت به تکمیل پروفایل خود اقدام نمایید
       </div>
       <div class="flex">
-        <nuxt-link to="/panel/edit_profile" class="text-white bg-blue-800  hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <nuxt-link to="/panel/edit_profile" class="text-white bg-blue-800  hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-green-500 dark:focus:ring-blue-800">
            تکمیل پروفایل
         </nuxt-link>
 

@@ -27,7 +27,7 @@
 body {
     font-family: "IRANSans FaNum";
     direction: rtl;
-    background-color: #111827;
+    background-color: #ebebeb;
 
 
 }
@@ -38,7 +38,7 @@ body {
     background-position: 50%;
     background-size: cover;
     height: 100vh;
-    background-color: #111827;
+    background-color: #ebebeb;
 }
 
 .Vue-Toastification__toast-body {
@@ -790,9 +790,10 @@ body {
 
 #default-sidebar .router-link-active {
     --tw-bg-opacity: 1;
-    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+    background-color: #0e9f6e;
     --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    color: #ffffff;
+   
 }
 
 
@@ -803,7 +804,7 @@ body {
     width: 100% !important;
 }
 .select2-container--default .select2-selection--single {
-    background-color: rgb(55 65 81 / var(--tw-bg-opacity)) !important;
+    background-color: #fff !important;
     height: 40px !important;
     display: flex !important;
     align-items: center;

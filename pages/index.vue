@@ -2,10 +2,11 @@
   <div class="login-page flex justify-center items-center" dir="rtl">
     <section class="max-w-[400px]  w-full">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <a href="#" class="flex items-center mb-6 text-xl text-center font-semibold text-blak dark:text-black">
+         <img src="/img/logo.png" alt="" class="h-[80px] mb-4" >
+        <a href="#" class="flex items-center mb-6 text-xl text-center font-semibold text-blak dark:text-white">
            هیات انجمن های ورزش های رزمی استان مازندران
         </a>
-        <div :class="{'opacity-20' : auth.form.disabled }" class=" w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+        <div :class="{'opacity-20' : auth.form.disabled }" class=" w-full bg-white rounded-lg shadow-2xl border  dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               ورود به حساب
@@ -28,7 +29,7 @@
 
 
               <div class="flex items-center justify-center">
-                <button :disbabled="auth.form.disabled" @click="auth.SendLogin()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                <button :disbabled="auth.form.disabled" @click="auth.SendLogin()" type="button" class="text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
                   <span v-if="auth.form.loading">
                   <svg aria-hidden="true" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
@@ -43,7 +44,7 @@
                 </button>
               </div>
 
-              <div class="text-white text-center">
+              <div class="text-black text-center">
                 حساب کاربری ندارید؟ <nuxt-link class="text-blue-600" to="/register">ثبت نام کنید</nuxt-link>
               </div>
 

@@ -8,6 +8,7 @@ export  const useAuthStore = defineStore('auth', {
         login: false,
         user_token: "",
         token_type: "",
+        sub_sports_fieldList :[],
         form: {
             loading: false,
             phone_number: "",
@@ -51,6 +52,7 @@ export  const useAuthStore = defineStore('auth', {
         logined: (state) => state.login,
         getToken: (state) => state.user_token,
         getType: (state) => state.token_type,
+        allsub_sports_fieldList : (state) => state.allsub_sports_fieldList,
     },
     actions: {
         GetSportFiledSelect(map = []){
@@ -1093,6 +1095,21 @@ export  const useAuthStore = defineStore('auth', {
             const toast = useToast();
             try {
                 const data = await useApiFetch(`/user/users/?${serialize(this.filterUser)}`,{
+                    method: "GET",
+                })
+                this.userList = data
+
+            } catch (e) {
+                toast.error(e.response._data.message)
+                this.userList.loading = false
+
+            }
+        },
+        async getsub_sports_fieldList() {
+            this.userList.loading = true
+            const toast = useToast();
+            try {
+                const data = await useApiFetch(`/user/sub_sports_field/?${this.allsub_sports_fieldList(this.filterUser)}`,{
                     method: "GET",
                 })
                 this.userList = data

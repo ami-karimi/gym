@@ -6,18 +6,18 @@
 
           <div class="flex justify-between mb-5">
               
-                <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
+                <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-black">
                     رشته های ورزشی   
                 </h5>
           
            
-              <button  v-if="view" @click="view = !view"  class="left-100 bg-blue-700 p-2 text-white ring-4  rounded-lg">
+              <button  v-if="view" @click="view = !view"  class="left-100 bg-green-500 p-2 text-black ring-4  rounded-lg">
                بازگشت
               </button>
 
           </div>
           <div v-if="view == false" class="relative ">
-            <label class="text-sm text-white mb-4 block">لطفا جهت مشاهده زیر رشته، رشته اصلی را انتخاب نمایید</label>
+            <label class="text-sm text-black mb-4 block">لطفا جهت مشاهده زیر رشته، رشته اصلی را انتخاب نمایید</label>
             <div class="flex  justify-start min-h-[200px]  w-full">
               <ul class="min-w-[150px] list-none">
               <li  v-for="item in user.sport_field" :key="item.id" @click="SelectSub(item)" class="flex items-center mb-3 justify-between rounded-lg  px-3 text-gray-700 py-1.5  bg-white cursor-pointer">
@@ -31,7 +31,7 @@
               </li>
             </ul>
               <ul class="min-w-[300px] mr-3 list-none">
-                 <li  v-for="item in user.sub_sport_field" :key="item.id"  class="flex items-center mb-3 justify-between  px-3 text-gray-700 py-1.5 border-r-2 text-white  cursor-pointer">
+                 <li  v-for="item in user.sub_sport_field" :key="item.id"  class="flex items-center mb-3 justify-between  px-3 text-gray-700 py-1.5 border-r-2 text-black  cursor-pointer">
                     <div>
                       {{item.name}}
                       >>
@@ -41,7 +41,7 @@
                    <div class="action flex items-center">
                      
                      
-                     <svg  @click="view = !view" class="ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="22" height="22">
+                     <svg  @click="allsub_sports_fieldList()" class="ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="22" height="22">
                          <path d="M25 12C11.667969 12 1.25 24.34375 1.25 24.34375C0.921875 24.71875 0.921875 25.28125 1.25 25.65625C1.25 25.65625 11.667969 38 25 38C38.332031 38 48.75 25.65625 48.75 25.65625C49.078125 25.28125 49.078125 24.71875 48.75 24.34375C48.75 24.34375 38.332031 12 25 12 Z M 25 14C27.628906 14 30.140625 14.542969 32.46875 15.375C34.03125 17.140625 35 19.449219 35 22C35 27.535156 30.535156 32 25 32C19.464844 32 15 27.535156 15 22C15 19.449219 15.9375 17.140625 17.5 15.375C19.835938 14.539063 22.363281 14 25 14 Z M 14.1875 16.84375C13.4375 18.40625 13 20.15625 13 22C13 28.617188 18.382813 34 25 34C31.617188 34 37 28.617188 37 22C37 20.164063 36.582031 18.40625 35.84375 16.84375C41.492188 19.714844 45.554688 23.878906 46.59375 25C44.96875 26.757813 35.972656 36 25 36C14.027344 36 5.03125 26.757813 3.40625 25C4.445313 23.875 8.527344 19.714844 14.1875 16.84375 Z M 25 17C22.238281 17 20 19.238281 20 22C20 24.761719 22.238281 27 25 27C27.761719 27 30 24.761719 30 22C30 19.238281 27.761719 17 25 17Z" fill="#2390ef" />
                      </svg>
                   
@@ -54,21 +54,21 @@
                   </li>
                  </ul>
               <div v-if="user.sub_sport_field.length" class="mr-3 border-r-2">
-                <h4 v-if="!user.sub_sport_field_form.id" class="text-white pr-4">ایجاد رشته در  ({{ parent_name }})</h4>
-                <h4 v-else class="text-white pr-4">بروزرسانی رشته فرعی ({{user.sub_sport_field_form.name}}) در رشته اصلی ({{ parent_name }})</h4>
+                <h4 v-if="!user.sub_sport_field_form.id" class="text-black pr-4">ایجاد رشته در  ({{ parent_name }})</h4>
+                <h4 v-else class="text-black pr-4">بروزرسانی رشته فرعی ({{user.sub_sport_field_form.name}}) در رشته اصلی ({{ parent_name }})</h4>
                 <div class="row mt-5 ">
                   <div class="col-md-8">
 
                     <div class="col-md-12">
                       <div class="mb-3" >
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام سبک</label>
-                        <input type="text" v-model="user.sub_sport_field_form.name"  id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]" placeholder="نام سبک را بنویسید...." required="">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">نام سبک</label>
+                        <input type="text" v-model="user.sub_sport_field_form.name"  id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]" placeholder="نام سبک را بنویسید...." required="">
                       </div>
                     </div>
 
                     <div class="col-md-12 mb-3" v-if="!user.sub_sport_field_form.select_custom">
-                      <label   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">انتخاب از کاربران </label>
-                      <Select2 v-model="user.sub_sport_field_form.national_code" style="width: 100%;"  :options="user.userList.map(item => ({text: (item.first_name ? item.first_name+' '+item.last_name : item.national_code),id: item.national_code}))" placeholder="صاحب سبک" />
+                      <label   class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">انتخاب از کاربران </label>
+                      <Select2 v-model="user.sub_sport_field_form.national_code" style="width: 100%;" class=" bg-green-500"  :options="user.userList.map(item => ({text: (item.first_name ? item.first_name+' '+item.last_name : item.national_code),id: item.national_code}))" placeholder="صاحب سبک" />
                     </div>
 
                     <div class="col-md-12">
@@ -83,20 +83,20 @@
 
                         <div class="col-md-6">
                           <div class="mb-3" >
-                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام </label>
-                            <input v-model="user.sub_sport_field_form.first_name" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام صاحب سبک" required="">
+                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">نام </label>
+                            <input v-model="user.sub_sport_field_form.first_name" type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام صاحب سبک" required="">
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="mb-3" >
-                            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">نام خانوادگی </label>
-                            <input v-model="user.sub_sport_field_form.last_name"  type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام خانوادگی صاحب سبک" required="">
+                            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">نام خانوادگی </label>
+                            <input v-model="user.sub_sport_field_form.last_name"  type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="نام خانوادگی صاحب سبک" required="">
                           </div>
                         </div>
                         <div class="col-md-12" >
                           <div class="mb-3" >
-                            <label for="national_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">کد ملی </label>
-                            <input type="text" v-model="user.sub_sport_field_form.national_code"  id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]" placeholder="کد ملی صاحب سبک" required="">
+                            <label for="national_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">کد ملی </label>
+                            <input type="text" v-model="user.sub_sport_field_form.national_code"  id="national_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]" placeholder="کد ملی صاحب سبک" required="">
                           </div>
                         </div>
 
@@ -104,13 +104,13 @@
                     </div>
 
                     <div class="col-md-12 mb-3">
-                      <label for="parent"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">رشته اصلی</label>
-                      <select id="parent" v-model="user.sub_sport_field_form.parent"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <label for="parent"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">رشته اصلی</label>
+                      <select id="parent" v-model="user.sub_sport_field_form.parent"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">انتخاب کنید</option>
                         <option v-for="item in user.sport_field" :value="item.id">{{ item.name }}</option>
                       </select>
                     </div>
-                    <label class="text-xs mt-2 pr-5 text-white block">چنانچه قصد جایجایی این سبک به رشته دیگیری را دارید میتوانید تغییر دهید سبک اصلی را در غیر اینصورت نیازی به تغییر این آیتم نمیباشد</label>
+                    <label class="text-xs mt-2 pr-5 text-black block">چنانچه قصد جایجایی این سبک به رشته دیگیری را دارید میتوانید تغییر دهید سبک اصلی را در غیر اینصورت نیازی به تغییر این آیتم نمیباشد</label>
 
 
                     <div class="col-md-12">
@@ -118,7 +118,7 @@
                         <button @click="CanceleEdit()"  type="button" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800 ml-2"  v-if="user.sub_sport_field_form.id">
                           انصراف
                         </button>
-                        <button @click="user.SaveSubSportField()" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        <button @click="user.SaveSubSportField()" type="button" class="text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-green-500 focus:outline-none dark:focus:ring-blue-800">
             <span v-if="user.sub_sport_field_form.loading">
                  <svg aria-hidden="true" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
@@ -140,10 +140,10 @@
               </div>
             </div>
           </div>
-            <div v-if="view"  class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div v-if="view"  class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
 
           <div class="flex justify-between mb-5">
-            <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">
+            <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-black">
             ورزشکاران هر سبک
             </h5>
 
@@ -166,7 +166,7 @@
               </thead>
               <tbody>
               <tr  v-for="item in user.sub_sport_field" :key="item.id"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" class="px-6 text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                   {{item.id}}
                 </th>
                 <td class="px-6 text-center py-4">
@@ -204,9 +204,11 @@ import {useAuthStore} from "~/store/auth";
 export default {
   setup(){
     const user = useAuthStore()
+    
+
 
     return {
-      user
+      user 
     }
   },
   data: () => ({
@@ -240,6 +242,9 @@ export default {
         return this.user.userList[index]
       }
       return {};
+    },
+    getsub_sports_fieldList(){
+      console.log(allsub_sports_fieldList)
     },
     EditSub(item){
       let owner = this.getOwnerData(item.owner)
