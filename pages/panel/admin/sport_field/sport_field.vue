@@ -41,7 +41,7 @@
                    <div class="action flex items-center">
                      
                      
-                     <svg  @click="allsub_sports_fieldList()" class="ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="22" height="22">
+                     <svg  @click="getsub_sports_fieldList(item)" class="ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="22" height="22">
                          <path d="M25 12C11.667969 12 1.25 24.34375 1.25 24.34375C0.921875 24.71875 0.921875 25.28125 1.25 25.65625C1.25 25.65625 11.667969 38 25 38C38.332031 38 48.75 25.65625 48.75 25.65625C49.078125 25.28125 49.078125 24.71875 48.75 24.34375C48.75 24.34375 38.332031 12 25 12 Z M 25 14C27.628906 14 30.140625 14.542969 32.46875 15.375C34.03125 17.140625 35 19.449219 35 22C35 27.535156 30.535156 32 25 32C19.464844 32 15 27.535156 15 22C15 19.449219 15.9375 17.140625 17.5 15.375C19.835938 14.539063 22.363281 14 25 14 Z M 14.1875 16.84375C13.4375 18.40625 13 20.15625 13 22C13 28.617188 18.382813 34 25 34C31.617188 34 37 28.617188 37 22C37 20.164063 36.582031 18.40625 35.84375 16.84375C41.492188 19.714844 45.554688 23.878906 46.59375 25C44.96875 26.757813 35.972656 36 25 36C14.027344 36 5.03125 26.757813 3.40625 25C4.445313 23.875 8.527344 19.714844 14.1875 16.84375 Z M 25 17C22.238281 17 20 19.238281 20 22C20 24.761719 22.238281 27 25 27C27.761719 27 30 24.761719 30 22C30 19.238281 27.761719 17 25 17Z" fill="#2390ef" />
                      </svg>
                   
@@ -140,7 +140,7 @@
               </div>
             </div>
           </div>
-          <div v-if="view"  class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div  v-else  class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
 
           <div class="flex justify-between mb-5">
             <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-black">
@@ -148,7 +148,7 @@
             </h5>
 
           </div>
-          <div class="relative overflow-x-auto  ">
+          <div   class="relative overflow-x-auto  ">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -165,16 +165,16 @@
               </tr>
               </thead>
               <tbody>
-              <tr  v-for="item in user.sub_sport_field" :key="item.id"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <tr  v-for="item in user.Userlistathletes" :key="item.id"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                   {{item.id}}
                 </th>
                 <td class="px-6 text-center py-4">
-                   {{item.name}}
+                   {{item.first_name}}
                 </td>
                 <td class="px-6 text-center py-4">
                  
-                  {{getOwnerName(item.owner)}}
+                  {{item.last_name}}
                 </td>
 
               </tr>
@@ -243,8 +243,9 @@ export default {
       }
       return {};
     },
-    getsub_sports_fieldList(){
-      console.log(allsub_sports_fieldList)
+    async getsub_sports_fieldList(item){
+      this.view = true
+     await this.user.Getallsub_sports_fieldList(item.id)
     },
     EditSub(item){
       let owner = this.getOwnerData(item.owner)

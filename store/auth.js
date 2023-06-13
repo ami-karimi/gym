@@ -17,6 +17,7 @@ export  const useAuthStore = defineStore('auth', {
         },
         user_profile: {  loading: true,},
         city: [],
+        Userlistathletes : [],
         coach: [],
         sports_field: {  loading: true,},
         sport_club: {  loading: true,},
@@ -1105,18 +1106,18 @@ export  const useAuthStore = defineStore('auth', {
 
             }
         },
-        async getsub_sports_fieldList() {
-            this.userList.loading = true
+        async Getallsub_sports_fieldList(id) {
+            this.Userlistathletes.loading = true
             const toast = useToast();
             try {
-                const data = await useApiFetch(`/user/sub_sports_field/?${this.allsub_sports_fieldList(this.filterUser)}`,{
+                const data = await useApiFetch(`/user/sub_sports_field/${id}/athletes/`,{
                     method: "GET",
                 })
-                this.userList = data
+                this.Userlistathletes = data.athletes
 
             } catch (e) {
                 toast.error(e.response._data.message)
-                this.userList.loading = false
+                this.Userlistathletes.loading = false
 
             }
         },
