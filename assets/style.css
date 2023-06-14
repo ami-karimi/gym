@@ -819,3 +819,7 @@ body {
 .select2-container--default[dir="rtl"] .select2-selection--single .select2-selection__arrow {
     top: 20% !important;
 }
+.hover\:bg-blue-800:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(3 84 63 / var(--tw-bg-opacity));
+}
