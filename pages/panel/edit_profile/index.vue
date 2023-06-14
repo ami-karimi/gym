@@ -4,19 +4,19 @@
       <div class="row">
 
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div @click="SelectedType('user')" :class="` border-gray-400 bg-white shadow-xl p-5 ${select_type.includes('user') ? 'bg-gray-700' : ''} text-center hover:bg-gray-700 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600`">
+          <div @click="SelectedType('user')" :class="` border-gray-400 bg-gray-800 shadow-xl p-5 ${select_type.includes('user') ? 'bg-gray-800' : ''} text-center hover:bg-gray-800 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600  focus:bg-gray-700`">
             <div v-if="select_type.includes('user')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
             <div class="icon-p flex mb-3 justify-center ">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="62" height="62">
-  <path fill="#ffba57" d="M14,4c2.209,0,4,1.791,4,4s-1.791,4-4,4c-2.209,0-4-1.791-4-4S11.791,4,14,4" />
+  <path  fill="#ffba57" d="M14,4c2.209,0,4,1.791,4,4s-1.791,4-4,4c-2.209,0-4-1.791-4-4S11.791,4,14,4" />
   <path fill="#d2ccc9" d="M41,14c0-1.105-0.895-2-2-2c-0.535,0-1.019,0.213-1.378,0.556l-12.343,7.651l-2.951-4.426c-0.098-0.147-0.217-0.271-0.33-0.401l9.204-5.555c0.731-0.387,1.011-1.295,0.623-2.027c-0.387-0.731-1.297-1.011-2.027-0.623l-17,9c-0.251,0.133-0.459,0.334-0.601,0.581l-4,7c-0.367,0.642-0.211,1.454,0.365,1.915l5,4C13.839,29.892,14.17,30,14.499,30c0.44,0,0.876-0.192,1.172-0.563c0.518-0.647,0.413-1.591-0.234-2.108l-3.998-3.199l3.951-4.443c0.084,0.18,0.168,0.361,0.282,0.532L20,26.54V42c0,1.105,0.895,2,2,2s2-0.895,2-2l2-16l13.926-10.237C40.562,15.428,41,14.769,41,14z" />
   <path fill="#d2ccc9" d="M26 26L24 42 24 27z" />
   <path fill="#606fc4" d="M15.333,19.729l4.662,6.804c2.831-1.941,4.608-4.674,5.413-6.132L22,15.333C22,15.333,18.787,17.358,15.333,19.729z" />
 </svg>
             </div>
-            <strong class="text-black" >حساب ورزشکار</strong>
+            <strong  >حساب ورزشکار</strong>
             <ul v-if="select_type.includes('user')"  class="w-[200px] ml-auto sm:mx-auto mt-3">
               <li class="flex items-center mb-2 ">
                 <div class="w-[30px]">
@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div @click="SelectedType('coach')" :class="` border-gray-400 bg-white shadow-xl ${select_type.includes('coach') ? 'bg-gray-700' : ''} p-5 text-center relative  hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg  border-gray-600`">
+          <div @click="SelectedType('coach')" :class="` bg-gray-800  border-gray-400 shadow-xl ${select_type.includes('coach') ? ' bg-gray-800 ' : ''} p-5 text-center relative hover:bg-gray-800  hover:border-gray-800 cursor-pointer transition text-white  rounded-lg  border-gray-600`">
             <div v-if="select_type.includes('coach')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -83,8 +83,8 @@
                 <polygon fill="#ffba57" points="14.464,24.792 12.312,22.615 13.389,21.529 15.54,23.704" />
               </svg>
             </div>
-            <strong class="text-black">حساب مربی</strong>
-            <ul v-if="select_type.includes('coach')"  class="w-[200px] mx-auto mt-3">
+            <strong >حساب مربی</strong>
+            <ul v-if="select_type.includes('coach')"  class="w-[200px] mx-auto mt-3 ">
               <li class="flex items-center mb-2">
                 <div class="w-[30px]">
                   <svg v-if="!user.profile_form.gender" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18">
@@ -121,7 +121,7 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div  @click="SelectedType('ref')" :class="` border-gray-400 bg-white shadow-xl  ${select_type.includes('ref') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
+          <div  @click="SelectedType('ref')" :class="` border-gray-400  bg-gray-800  shadow-xl  ${select_type.includes('ref') ? 'bg-gray-800' : ''}  p-5 text-center relative hover: bg-gray-800  hover: bg-gray-800 cursor-pointer transition  text-white rounded-lg border-gray-600`">
             <div v-if="select_type.includes('ref')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -133,7 +133,7 @@
                 <path fill="#ffcdd2" d="M17.938,21.708c0.158,1.094-3.802,1.663-3.959,0.571c-0.158-1.094,0.602-2.107,1.694-2.266C16.768,19.857,17.781,20.615,17.938,21.708z" />
               </svg>
             </div>
-            <strong class="text-black">حساب داور</strong>
+            <strong >حساب داور</strong>
             <ul v-if="select_type.includes('ref')"  class="w-[200px] mx-auto mt-3">
               <li class="flex items-center mb-2">
                 <div class="w-[30px]">
@@ -155,7 +155,7 @@
           </div>
         </div>
          <div class="col-md-3 col-xs-6 mb-2 sn:mb-0" >
-          <div  @click="SelectedType('more') " :class="` border-gray-400 bg-white shadow-xl  ${select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
+          <div  @click="SelectedType('more') " :class="` border-gray-400  bg-gray-800 shadow-xl  ${select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach') ? ' bg-gray-800' : ''}  p-5 text-center relative hover: bg-gray-800 hover: bg-gray-800 cursor-pointer transition  text-white rounded-lg border-gray-600`">
             <div v-if="select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -165,7 +165,7 @@
                 <path fill="#607D8B" d="M42,36.1c0,0-5-10.1-18-10.1C11,26,6,36.1,6,36.1V42h36V36.1z" />
                 </svg>
             </div>
-            <strong class="text-black"> سایر</strong>
+            <strong > سایر</strong>
             <ul v-if="select_type.includes('more')"   class="w-[200px] mx-auto mt-3">
                 
             </ul>

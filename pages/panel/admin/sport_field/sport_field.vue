@@ -11,7 +11,7 @@
                 </h5>
           
            
-              <button  v-if="view" @click="view = !view"  class="left-100 bg-green-500 p-2 text-black ring-4  rounded-lg">
+              <button  v-if="view" @click="view = !view"  class="left-100 bg-green-500 p-2 text-black text-white  rounded-lg">
                بازگشت
               </button>
 
@@ -19,19 +19,19 @@
           <div v-if="view == false" class="relative ">
             <label class="text-sm text-black mb-4 block">لطفا جهت مشاهده زیر رشته، رشته اصلی را انتخاب نمایید</label>
             <div class="flex  justify-start min-h-[200px]  w-full">
-              <ul class="min-w-[150px] list-none">
-              <li  v-for="item in user.sport_field" :key="item.id" @click="SelectSub(item)" class="flex items-center mb-3 justify-between rounded-lg  px-3 text-gray-700 py-1.5  bg-white cursor-pointer">
+              <ul class="min-w-[100px] list-none ">
+              <li  style="background-color: darkorange; color:white;" v-for="item in user.sport_field" :key="item.id" @click="SelectSub(item)" class="flex items-center mb-3 justify-between rounded-lg  px-3 text-gray-700 py-1.5  bg-white cursor-pointer">
                 {{item.name}}
 
                 <div v-if="item.sub_fields.length">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="12" height="12">
-                    <path d="M29.449219 4.9863281 A 1.50015 1.50015 0 0 0 28.423828 5.4550781L11.423828 22.955078 A 1.50015 1.50015 0 0 0 11.423828 25.044922L28.423828 42.544922 A 1.50015 1.50015 0 1 0 30.576172 40.455078L14.591797 24L30.576172 7.5449219 A 1.50015 1.50015 0 0 0 29.449219 4.9863281 z" fill="#8a8a8a" />
+                  <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="12" height="12">
+                    <path style="fill:#fff;" d="M29.449219 4.9863281 A 1.50015 1.50015 0 0 0 28.423828 5.4550781L11.423828 22.955078 A 1.50015 1.50015 0 0 0 11.423828 25.044922L28.423828 42.544922 A 1.50015 1.50015 0 1 0 30.576172 40.455078L14.591797 24L30.576172 7.5449219 A 1.50015 1.50015 0 0 0 29.449219 4.9863281 z" fill="#8a8a8a" />
                   </svg>
                 </div>
               </li>
             </ul>
-              <ul class="min-w-[300px] mr-3 list-none">
-                 <li  v-for="item in user.sub_sport_field" :key="item.id"  class="flex items-center mb-3 justify-between  px-3 text-gray-700 py-1.5 border-r-2 text-black  cursor-pointer">
+              <ul class="min-w-[200px] mr-3 list-none ">
+                 <li  v-for="item in user.sub_sport_field" :key="item.id"  class=" flex items-center mb-3 justify-between  px-3 text-gray-700 py-1.5 border-r-2 text-black  cursor-pointer">
                     <div>
                       {{item.name}}
                       >>
@@ -53,7 +53,8 @@
               
                   </li>
                  </ul>
-              <div v-if="user.sub_sport_field.length" class="mr-3 border-r-2">
+             
+              <div v-if="user.sub_sport_field.length" class="mr-3 border-r-2 ">
                 <h4 v-if="!user.sub_sport_field_form.id" class="text-black pr-4">ایجاد رشته در  ({{ parent_name }})</h4>
                 <h4 v-else class="text-black pr-4">بروزرسانی رشته فرعی ({{user.sub_sport_field_form.name}}) در رشته اصلی ({{ parent_name }})</h4>
                 <div class="row mt-5 ">
