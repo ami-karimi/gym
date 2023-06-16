@@ -2,7 +2,7 @@
   <nuxt-layout name="user">
     <div class="row">
       <div class="col-md-12">
-        <div  class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+        <div   class=" w-full  p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
 
           <div class="flex justify-between mb-5">
               
@@ -16,10 +16,13 @@
               </button>
 
           </div>
-          <div v-if="view == false" class="relative ">
+
+       <div class="row">
+
+       <div v-if="view == false" class="relative ">
             <label class="text-sm text-black mb-4 block">لطفا جهت مشاهده زیر رشته، رشته اصلی را انتخاب نمایید</label>
-            <div class="flex  justify-start min-h-[200px]  w-full">
-              <ul class="min-w-[100px] list-none ">
+         <div class="md:flex min-h-[200px]  w-full">
+              <ul class="col-md-4  min-w-[100px] list-none ">
               <li  style="background-color: darkorange; color:white;" v-for="item in user.sport_field" :key="item.id" @click="SelectSub(item)" class="flex items-center mb-3 justify-between rounded-lg  px-3 text-gray-700 py-1.5  bg-white cursor-pointer">
                 {{item.name}}
 
@@ -30,7 +33,7 @@
                 </div>
               </li>
             </ul>
-              <ul class="min-w-[200px] mr-3 list-none ">
+              <ul class=" col-md-4  min-w-[200px] mr-3 list-none ">
                  <li  v-for="item in user.sub_sport_field" :key="item.id"  class=" flex items-center mb-3 justify-between  px-3 text-gray-700 py-1.5 border-r-2 text-black  cursor-pointer">
                     <div>
                       {{item.name}}
@@ -54,7 +57,7 @@
                   </li>
                  </ul>
              
-              <div v-if="user.sub_sport_field.length" class="mr-3 border-r-2 ">
+              <div v-if="user.sub_sport_field.length" class=" col-md-4  mr-3 border-r-2 ">
                 <h4 v-if="!user.sub_sport_field_form.id" class="text-black pr-4">ایجاد رشته در  ({{ parent_name }})</h4>
                 <h4 v-else class="text-black pr-4">بروزرسانی رشته فرعی ({{user.sub_sport_field_form.name}}) در رشته اصلی ({{ parent_name }})</h4>
                 <div class="row mt-5 ">
@@ -165,6 +168,8 @@
 
               </tr>
               </thead>
+
+            </table>
               <tbody>
               <tr  v-for="item in user.Userlistathletes" :key="item.id"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="px-6 text-center py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
@@ -181,21 +186,15 @@
               </tr>
 
               </tbody>
-            </table>
-
 
 
           </div>
 
         </div>
+       </div>
 
         </div>
-
-
-
       </div>
-
-
     </div>
   </nuxt-layout>
 </template>
