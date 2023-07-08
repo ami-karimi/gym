@@ -4,7 +4,7 @@
       <div class="row">
 
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div @click="SelectedType('user')" :class="`border p-5 ${select_type.includes('user') ? 'bg-gray-700' : ''} text-center hover:bg-gray-700 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600`">
+          <div @click="SelectedType('user')" :class="` border-gray-400 bg-gray-800 shadow-xl p-5 ${select_type.includes('user') ? 'bg-gray-800' : ''} text-center hover:bg-gray-800 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600  focus:bg-gray-700`">
             <div v-if="select_type.includes('user')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div @click="SelectedType('coach')" :class="`border ${select_type.includes('coach') ? 'bg-gray-700' : ''} p-5 text-center relative  hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg  border-gray-600`">
+          <div @click="SelectedType('coach')" :class="` border-gray-400 bg-gray-800 shadow-xl p-5 ${select_type.includes('coach') ? 'bg-gray-800' : ''} text-center hover:bg-gray-800 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600  focus:bg-gray-700`">
             <div v-if="select_type.includes('coach')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -121,7 +121,7 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-6  mb-2 sn:mb-0">
-          <div  @click="SelectedType('ref')" :class="`border  ${select_type.includes('ref') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
+          <div  @click="SelectedType('ref')" :class="` border-gray-400 bg-gray-800 shadow-xl p-5  ${select_type.includes('ref') ? 'bg-gray-800' : ''} text-center hover:bg-gray-800 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600  focus:bg-gray-700`">
             <div v-if="select_type.includes('ref')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
@@ -155,7 +155,7 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-6 mb-2 sn:mb-0" >
-          <div  @click="SelectedType('more') " :class="`border  ${select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach') ? 'bg-gray-700' : ''}  p-5 text-center relative hover:bg-gray-700  hover:border-gray-700 cursor-pointer transition  text-white rounded-lg border-gray-600`">
+          <div  @click="SelectedType('more') " :class="` border-gray-400 bg-gray-800 shadow-xl p-5  ${select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach') ? 'bg-gray-800' : ''}text-center hover:bg-gray-800 relative hover:border-gray-700 cursor-pointer transition text-white rounded-lg border-gray-600  focus:bg-gray-700`">
             <div v-if="select_type.includes('more') ||  select_type.includes('ref') || select_type.includes('user') ||  select_type.includes('coach')" class="bg-green-500 absolute rounded top-2 left-2">
               <span class="text-sm px-2 py-1">انتخاب شده</span>
             </div>
